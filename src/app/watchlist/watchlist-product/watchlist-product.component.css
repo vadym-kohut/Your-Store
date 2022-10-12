@@ -1,0 +1,23 @@
+.product-card__star img {
+  width: 25px;
+}
+
+.product-card__cart img {
+  width: 30px;
+}
+
+.product-card__star,
+.product-card__cart {
+  position: absolute;
+  cursor: pointer;
+}
+
+.product-card__star {
+  top: 10px;
+  right: 10px;
+}
+
+.product-card__cart {
+  bottom: 10px;
+  right: 10px;
+}

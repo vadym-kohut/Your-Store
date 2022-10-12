@@ -1,0 +1,7 @@
+.cart-product__remove-button {
+  cursor: pointer;
+}
+
+.cart__product {
+  border: 1px solid lightgrey;
+}

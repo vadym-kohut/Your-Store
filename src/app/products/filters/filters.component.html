@@ -1,0 +1,34 @@
+<h6>Sort by</h6>
+
+<form [formGroup]="filterForm">
+
+  <select formControlName="sortQuery" class="form-select">
+    <option value="alphabetically">Alphabetically</option>
+    <option value="priceLH">Price: low to high</option>
+    <option value="priceHL">Price: high to low</option>
+    <option value="hRating">Highest rating</option>
+  </select>
+  <hr>
+
+  <h6>Price</h6>
+  <div class="input-group mb-3">
+    <span class="input-group-text">from</span>
+    <input formControlName="priceFromQuery" type="number" class="form-control">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text">to</span>
+    <input formControlName="priceToQuery" type="number" class="form-control">
+  </div>
+
+  <h6>Rating</h6>
+  <select formControlName="ratingQuery" class="form-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+</form>
+
+<button (click)="clearFilters()" class="btn btn-warning mt-2 w-100">Clear filters</button>

@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li (click)="setProductCategoryQuery(category)" *ngFor="let category of categories | async"
+      class="list-group-item">{{category}}</li>
+  </ul>
+  

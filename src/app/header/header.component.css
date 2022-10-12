@@ -1,0 +1,30 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin-bottom: 1rem;
+}
+
+.header__logo {
+    width: 40px;
+}
+
+.nav-link__img {
+    width: 30px;
+}
+
+li {
+    position: relative;
+}
+
+.cart-product-number,
+.watchlist-product-number {
+    color: red;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.user__img {
+    width: 50px;
+}

@@ -1,0 +1,8 @@
+<h2 class="mb-4">Watchlist</h2>
+
+<app-watchlist-product
+  [watchlistProducts$]="watchlistProducts$"
+  (removeFromWatchlistEvent)="removeFromWatchlist($event)"
+  (addToCartEvent)="addToCart($event)"
+>
+</app-watchlist-product>
