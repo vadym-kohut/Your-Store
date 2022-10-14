@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IsUserLoggedDirective } from '../directives/is-user-logged.directive';
 import { StarsComponent } from '../standalone/stars/stars.component';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { StarsComponent } from '../standalone/stars/stars.component';
     CommonModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
-    StarsComponent
+    StarsComponent,
+    StoreModule.forFeature('products', {})
   ]
 })
 export class ProductsModule { }

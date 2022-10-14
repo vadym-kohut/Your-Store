@@ -3,18 +3,24 @@ import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { CartDBService } from '../services/cart-db.service';
 
+import * as CartActions from "./state/cart.actions";
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartProducts$ = new Observable<Product[]>();
-  cartProductsNumber$ = new Observable<number>();
-  cartProductsTotalAmount$ = new Observable<number>();
+  cartProducts$!: Observable<Product[]>;
+  cartProductsNumber$!: Observable<number>;
+  cartProductsTotalAmount$!: Observable<number>;
   deliveryDate = this.getDeliveryDate();
 
-  constructor(private cartDB: CartDBService) {}
+  constructor(
+    private cartDB: CartDBService,
+    private store: Store<any> //! change to State
+  ) { }
 
   ngOnInit(): void {
     this.cartProducts$ = this.cartDB.getCartProducts$();
