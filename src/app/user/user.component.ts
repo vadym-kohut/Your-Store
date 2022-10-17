@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { LoginForm } from '../interfaces/login-form';
 import { UserDBService } from '../services/user-db.service';
+import { State } from './state/user.reducer';
+import * as UserActions from './state/user.actions';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +22,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userDB: UserDBService,
-    private router: Router
+    private router: Router,
+    private store: Store<State>
   ) { }
 
   ngOnInit(): void {
@@ -27,8 +31,9 @@ export class UserComponent implements OnInit {
 
   onSubmit() {
     this.userDB.loginUser(this.loginForm.getRawValue()).subscribe({
-      next: res => {
-        this.userDB.setUserData(res)
+      next: user => {
+        // this.userDB.setUserData(res)
+        this.store.dispatch(UserActions.setUserData({ user }))
         this.router.navigate(['/']);
       },
       error: () => this.loginDataInvalid = true

@@ -32,9 +32,15 @@ export const getWatchlistProductNumber = createSelector(
 export const watchlistReducer = createReducer(
     initialState,
     on(WatchlistActions.addToWatchlist, (state, action): WatchlistState => {
-        return {
-            ...state,
-            watchlistProducts: [...state.watchlistProducts, action.product]
+        if (!state.watchlistProducts.includes(action.product)) {
+            return {
+                ...state,
+                watchlistProducts: [...state.watchlistProducts, action.product]
+            }
+        } else {
+            return {
+                ...state
+            }
         }
     }),
     on(WatchlistActions.removeFromWatchlist, (state, action): WatchlistState => {
