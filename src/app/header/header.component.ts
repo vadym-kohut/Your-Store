@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { getCartProductNumber } from '../cart/state/cart.reducer';
 import { User } from '../interfaces/user';
-import { CartDBService } from '../services/cart-db.service';
 import { UserDBService } from '../services/user-db.service';
-import { WatchlistDBService } from '../services/watchlist-db.service';
+import { getWatchlistProductNumber } from '../watchlist/state/watchlist.reducer';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +17,13 @@ export class HeaderComponent implements OnInit {
   userData$ = new Observable<User | undefined>();
 
   constructor(
-    private cartDB: CartDBService,
-    private watchlistDB: WatchlistDBService,
-    private userDB: UserDBService
+    private userDB: UserDBService,
+    private store: Store<any>
   ) { }
 
   ngOnInit(): void {
-    this.cartProductsNumber$ = this.cartDB.getCartProductsNumber$();
-    this.watchlistProductNumber$ = this.watchlistDB.getWatchlistProductNumber$();
+    this.cartProductsNumber$ = this.store.select(getCartProductNumber);
+    this.watchlistProductNumber$ = this.store.select(getWatchlistProductNumber);
     this.userData$ = this.userDB.getUserData$();
   }
 }

@@ -23,6 +23,11 @@ export const getWatchlistProducts = createSelector(
     state => state.watchlistProducts
 );
 
+export const getWatchlistProductNumber = createSelector(
+    getWatchlistFeatureState,
+    state => state.watchlistProducts.length
+);
+
 // Reducer
 export const watchlistReducer = createReducer(
     initialState,
