@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/product';
-import { State } from '../state/product.reducer';
-import * as CartActions from '../../cart/state/cart.actions';
 
 @Component({
   selector: 'app-product',
@@ -19,14 +16,13 @@ export class ProductComponent {
   @Output()
   addToCartEvent = new EventEmitter<Product>();
 
-  constructor(private store: Store<State>) { }
+  constructor() { }
 
   addToWatchlist(product: Product) {
     this.addToWatchlistEvent.emit(product);
   }
 
   addToCart(product: Product) {
-    this.store.dispatch(CartActions.addToCart({ product }));
+    this.addToCartEvent.emit(product);
   }
-
 }
