@@ -7,6 +7,7 @@ import { CartProductComponent } from './cart-product/cart-product.component';
 
 /* NgRx */
 import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './state/cart.reducer';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { StoreModule } from '@ngrx/store';
   imports: [
     CommonModule,
     CartRoutingModule,
-    StoreModule.forFeature('cart', {})
+    StoreModule.forFeature('cart', cartReducer)
   ]
 })
 export class CartModule { }

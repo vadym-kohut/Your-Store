@@ -5,6 +5,7 @@ import { CartDBService } from '../services/cart-db.service';
 
 import * as CartActions from "./state/cart.actions";
 import { Store } from '@ngrx/store';
+import { getCartProducts } from './state/cart.reducer';
 
 @Component({
   selector: 'app-cart',
@@ -23,7 +24,8 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cartProducts$ = this.cartDB.getCartProducts$();
+    // this.cartProducts$ = this.cartDB.getCartProducts$();
+    this.cartProducts$ = this.store.select(getCartProducts);
     this.cartProductsNumber$ = this.cartDB.getCartProductsNumber$();
     this.cartProductsTotalAmount$ = this.cartDB.getCartProductsTotalAmount$();
   }

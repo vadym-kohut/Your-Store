@@ -9,15 +9,11 @@ export interface State extends AppState.State {
 
 export interface CartState {
     cartProducts: Product[];
-    cartProductsNumber: number;
-    cartProductsTotalAmount: number;
     deliveryDate: string;
 }
 
 const initialState: CartState = {
     cartProducts: [],
-    cartProductsNumber: 0,
-    cartProductsTotalAmount: 0,
     deliveryDate: ''
 }
 
@@ -27,16 +23,6 @@ const getCartFeatureState = createFeatureSelector<CartState>('cart');
 export const getCartProducts = createSelector(
     getCartFeatureState,
     state => state.cartProducts
-);
-
-export const getCartProductsNumber = createSelector(
-    getCartFeatureState,
-    state => state.cartProductsNumber
-);
-
-export const getCartProductsTotalAmount = createSelector(
-    getCartFeatureState,
-    state => state.cartProductsTotalAmount
 );
 
 export const getDeliveryDate = createSelector(

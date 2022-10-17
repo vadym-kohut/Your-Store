@@ -9,6 +9,10 @@ import { ToastComponent } from './toast/toast.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { appReducer } from './state/app.state';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ name: 'Your Store App Devtools', maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

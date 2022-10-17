@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { CartDBService } from '../services/cart-db.service';
@@ -6,6 +7,9 @@ import { ProductDBService } from '../services/product-db.service';
 import { QueryDBService } from '../services/query-db.service';
 import { ToastDBService } from '../services/toast-db.service';
 import { WatchlistDBService } from '../services/watchlist-db.service';
+import { getProducts, State } from './state/product.reducer';
+import * as ProductActions from './state/product.actions';
+import * as CartActions from '../cart/state/cart.actions';
 
 @Component({
   selector: 'app-products',
@@ -21,11 +25,13 @@ export class ProductsComponent implements OnInit {
     private watchlistDB: WatchlistDBService,
     private cartDB: CartDBService,
     private queryDB: QueryDBService,
-    private toastDB: ToastDBService
+    private toastDB: ToastDBService,
+    private store: Store<State>
   ) { }
 
   ngOnInit(): void {
-    this.products = this.productDB.getProductsBySearch$();
+    this.products = this.store.select(getProducts)
+    this.store.dispatch(ProductActions.loadProducts())
     this.queryDB.getProductQuery$().subscribe(product => this.category = product.categoryQuery);
   }
 
@@ -34,7 +40,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    this.cartDB.addToCart(product);
+
   }
 
   setAddedProduct(product: Product) {
