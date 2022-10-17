@@ -30,6 +30,7 @@ export const getDeliveryDate = createSelector(
     state => state.deliveryDate
 );
 
+// Reducer
 export const cartReducer = createReducer(
     initialState,
     on(CartActions.addToCart, (state, action): CartState => {

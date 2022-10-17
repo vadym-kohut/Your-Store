@@ -40,7 +40,6 @@ export class ProductDBService {
           filteredProducts = filteredProducts.filter((product: Product) => product.category === query.categoryQuery);
         }
 
-        console.log(query.sortQuery)
         if (query.sortQuery !== '') {
           switch (query.sortQuery) {
             case 'priceLH':
