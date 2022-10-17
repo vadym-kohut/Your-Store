@@ -5,7 +5,7 @@ import { CartDBService } from '../services/cart-db.service';
 
 import * as CartActions from "./state/cart.actions";
 import { Store } from '@ngrx/store';
-import { getCartProductNumber, getCartProducts } from './state/cart.reducer';
+import { getCartProductNumber, getCartProducts, getCartProductsTotalAmount, State } from './state/cart.reducer';
 
 @Component({
   selector: 'app-cart',
@@ -20,13 +20,13 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartDB: CartDBService,
-    private store: Store<any> //! change to State
+    private store: Store<State>
   ) { }
 
   ngOnInit(): void {
     this.cartProducts$ = this.store.select(getCartProducts);
     this.cartProductsNumber$ = this.store.select(getCartProductNumber);
-    this.cartProductsTotalAmount$ = this.cartDB.getCartProductsTotalAmount$();
+    this.cartProductsTotalAmount$ = this.store.select(getCartProductsTotalAmount);
   }
 
   removeFromCart(product: Product): void {

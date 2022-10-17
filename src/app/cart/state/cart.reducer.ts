@@ -35,6 +35,17 @@ export const getCartProductNumber = createSelector(
     state => state.cartProducts.length
 );
 
+export const getCartProductsTotalAmount = createSelector(
+    getCartFeatureState,
+    state => {
+        if (state.cartProducts.length) {
+            return state.cartProducts.map(product => product.price).reduce((prev, next) => prev + next)
+        } else {
+            return 0
+        }
+    }
+);
+
 // Reducer
 export const cartReducer = createReducer(
     initialState,
