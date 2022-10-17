@@ -31,5 +31,11 @@ export const watchlistReducer = createReducer(
             ...state,
             watchlistProducts: [...state.watchlistProducts, action.product]
         }
+    }),
+    on(WatchlistActions.removeFromWatchlist, (state, action): WatchlistState => {
+        return {
+            ...state,
+            watchlistProducts: state.watchlistProducts.filter(product => product !== action.product)
+        }
     })
 );

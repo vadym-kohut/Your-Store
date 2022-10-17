@@ -24,14 +24,13 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.cartProducts$ = this.cartDB.getCartProducts$();
     this.cartProducts$ = this.store.select(getCartProducts);
     this.cartProductsNumber$ = this.cartDB.getCartProductsNumber$();
     this.cartProductsTotalAmount$ = this.cartDB.getCartProductsTotalAmount$();
   }
 
   removeFromCart(product: Product): void {
-    this.cartDB.removeFromCart(product);
+    this.store.dispatch(CartActions.removeFromCart({ product }));
   }
 
   getDeliveryDate(): string {

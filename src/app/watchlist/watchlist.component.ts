@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
-import { CartDBService } from '../services/cart-db.service';
-import { WatchlistDBService } from '../services/watchlist-db.service';
 import { getWatchlistProducts, State } from './state/watchlist.reducer';
 import * as CartActions from '../cart/state/cart.actions';
+import * as WatchlistActions from './state/watchlist.actions';
 
 @Component({
   selector: 'app-watchlist',
@@ -16,18 +15,15 @@ export class WatchlistComponent implements OnInit {
   watchlistProducts$ = new Observable<Product[]>();
 
   constructor(
-    private watchlistDB: WatchlistDBService,
-    private cartDB: CartDBService,
     private store: Store<State>
   ) { }
 
   ngOnInit(): void {
-    // this.watchlistProducts$ = this.watchlistDB.getWatchlist$();
     this.watchlistProducts$ = this.store.select(getWatchlistProducts);
   }
 
   removeFromWatchlist(product: Product): void {
-    this.watchlistDB.removeFromWatchlist(product);
+    this.store.dispatch(WatchlistActions.removeFromWatchlist({ product }));
   }
 
   addToCart(product: Product): void {
