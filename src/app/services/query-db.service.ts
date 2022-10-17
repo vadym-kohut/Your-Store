@@ -9,7 +9,7 @@ export class QueryDBService {
   private productQuery$ = new BehaviorSubject<ProductQuery>({
     searchQuery: '',
     categoryQuery: '',
-    sortQuery: '',
+    sortQuery: 'featured',
     priceFromQuery: null,
     priceToQuery: null,
     ratingQuery: ''

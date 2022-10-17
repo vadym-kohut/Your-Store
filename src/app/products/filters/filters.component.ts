@@ -11,7 +11,7 @@ import { QueryDBService } from 'src/app/services/query-db.service';
 })
 export class FiltersComponent implements OnInit {
     filterForm = new FormGroup<FilterForm>({
-        sortQuery: new FormControl('alphabetically', { nonNullable: true }),
+        sortQuery: new FormControl('featured', { nonNullable: true }),
         priceFromQuery: new FormControl(null),
         priceToQuery: new FormControl(null),
         ratingQuery: new FormControl('', { nonNullable: true })
