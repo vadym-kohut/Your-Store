@@ -17,7 +17,7 @@ export class SearchBarComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.productSearch.valueChanges.pipe(debounceTime(500), tap(x => console.log(x)))
+        this.productSearch.valueChanges.pipe(debounceTime(500))
             .subscribe(value => this.queryDB.setProductQuery({ searchQuery: value }));
     }
 }
