@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getCartProductNumber } from '../cart/state/cart.reducer';
 import { User } from '../interfaces/user';
-import { UserDBService } from '../services/user-db.service';
+import { State } from '../state/app.state';
+import { getUserData } from '../user/state/user.reducer';
 import { getWatchlistProductNumber } from '../watchlist/state/watchlist.reducer';
 
 @Component({
@@ -17,13 +18,12 @@ export class HeaderComponent implements OnInit {
   userData$ = new Observable<User | undefined>();
 
   constructor(
-    private userDB: UserDBService,
-    private store: Store<any>
+    private store: Store<State>
   ) { }
 
   ngOnInit(): void {
     this.cartProductsNumber$ = this.store.select(getCartProductNumber);
     this.watchlistProductNumber$ = this.store.select(getWatchlistProductNumber);
-    this.userData$ = this.userDB.getUserData$();
+    this.userData$ = this.store.select(getUserData)
   }
 }

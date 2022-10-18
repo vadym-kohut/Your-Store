@@ -32,7 +32,6 @@ export class UserComponent implements OnInit {
   onSubmit() {
     this.userDB.loginUser(this.loginForm.getRawValue()).subscribe({
       next: user => {
-        // this.userDB.setUserData(res)
         this.store.dispatch(UserActions.setUserData({ user }))
         this.router.navigate(['/']);
       },

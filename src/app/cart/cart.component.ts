@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
-import { CartDBService } from '../services/cart-db.service';
 
 import * as CartActions from "./state/cart.actions";
 import { Store } from '@ngrx/store';
@@ -19,7 +18,6 @@ export class CartComponent implements OnInit {
   deliveryDate = this.getDeliveryDate();
 
   constructor(
-    private cartDB: CartDBService,
     private store: Store<State>
   ) { }
 
