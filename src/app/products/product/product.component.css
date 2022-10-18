@@ -1,6 +1,6 @@
 .product--card__img {
   height: 150px;
-  object-fit: cover;
+  object-fit: scale-down;
 }
 
 .product-card__star,
@@ -16,13 +16,28 @@
 
 .product-card__star img {
   width: 25px;
+  visibility: hidden;
 }
 
 .product-card__cart img {
   width: 30px;
+  visibility: hidden;
+}
+
+.card:hover .product-card__cart img,
+.card:hover .product-card__star img {
+  visibility: visible;
 }
 
 .product-card__cart {
   bottom: 5px;
   right: 5px;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card:hover {
+  border: 1px solid #ffc107;
 }
