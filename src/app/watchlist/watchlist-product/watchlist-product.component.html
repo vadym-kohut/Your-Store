@@ -11,12 +11,9 @@
           <small class="text-muted">{{ product.stock }} units left</small>
         </p>
       </div>
-      <a (click)="removeFromWatchlist(product)" class="product-card__star"
-        ><img src="../../assets/unstar.png"
-      /></a>
-      <a (click)="addToCart(product)" class="product-card__cart"
-        ><img src="../../assets/cart.png"
-      /></a>
+      <a (click)="removeFromWatchlist(product)" class="product-card__remove-product"><img
+          src="../../assets/unstar.png" /></a>
+      <a (click)="addToCart(product)" class="product-card__add-product"><img src="../../assets/cart.png" /></a>
     </div>
   </div>
 </div>

@@ -1,23 +1,23 @@
-.product-card__star img {
+.product-card__remove-product img {
   width: 25px;
 }
 
-.product-card__cart img {
+.product-card__add-product img {
   width: 30px;
 }
 
-.product-card__star,
-.product-card__cart {
+.product-card__remove-product,
+.product-card__add-product {
   position: absolute;
   cursor: pointer;
 }
 
-.product-card__star {
+.product-card__remove-product {
   top: 10px;
   right: 10px;
 }
 
-.product-card__cart {
+.product-card__add-product {
   bottom: 10px;
   right: 10px;
 }
