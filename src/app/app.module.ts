@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { appReducer } from './state/app.state';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { appReducer } from './state/app.state';
     ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ name: 'Your Store App Devtools', maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ name: 'Your Store App Devtools', maxAge: 25, logOnly: environment.production }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
