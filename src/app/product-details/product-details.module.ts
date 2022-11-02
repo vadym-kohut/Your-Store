@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductDetailsRoutingModule } from './product-details-routing.module';
 import { ProductDetailsComponent } from './product-details.component';
 import { StarsComponent } from '../standalone/stars/stars.component';
+import { GalleriaModule } from 'primeng/galleria';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { StarsComponent } from '../standalone/stars/stars.component';
   imports: [
     CommonModule,
     ProductDetailsRoutingModule,
-    StarsComponent
+    StarsComponent,
+    GalleriaModule
   ]
 })
 export class ProductDetailsModule { }

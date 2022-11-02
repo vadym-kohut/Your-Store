@@ -6,3 +6,11 @@
 .description--aside__img {
   width: 20px;
 }
+
+.grid-nogutter img {
+  max-width: 70px;
+}
+
+:host ::ng-deep .p-galleria-item-wrapper {
+  height: 100%;
+}

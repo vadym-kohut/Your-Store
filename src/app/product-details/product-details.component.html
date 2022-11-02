@@ -1,71 +1,81 @@
 <div class="row" *ngIf="chosenProduct">
 
-    <!-- LEFT SIDE -->
-    <div class="col-8">
-  
-      <div class="row">
-        <div class="col">
-          <img [src]="chosenProduct.images[0]" alt="">
-        </div>
+  <!-- LEFT SIDE -->
+  <div class="col-8">
+
+    <div class="row">
+      <div class="col">
+        <p-galleria [value]="chosenProductImages" [numVisible]="4" thumbnailsPosition="left">
+          <ng-template pTemplate="item" let-item>
+            <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
+          </ng-template>
+          <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+              <img [src]="item.thumbnailImageSrc" />
+            </div>
+          </ng-template>
+        </p-galleria>
       </div>
-  
-      <div class="row my-3">
-        <h3>Parameters</h3>
-        <div class="col">
-          <table class="table">
-            <tr>
-              <td>Brand: </td>
-              <td>{{chosenProduct.brand}}</td>
-            </tr>
-            <tr>
-              <td>Producent code: </td>
-              <td>{{chosenProduct.id}}</td>
-            </tr>
-          </table>
-        </div>
-  
-        <div class="col">
-          <table class="table">
-            <tr>
-              <td>Category: </td>
-              <td>{{chosenProduct.category}}</td>
-            </tr>
-            <tr>
-              <td>Units left: </td>
-              <td>{{chosenProduct.stock}}</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-  
     </div>
-  
-    <!-- RIGHT SIDE -->
-    <div class="col-4">
-  
-      <div class="row">
-        <div class="col-11">
-          <h2>{{chosenProduct.title}}</h2>
-          <h3>${{chosenProduct.price}}</h3>
-          <span><app-stars [product]="chosenProduct"></app-stars></span>
-        </div>
-        <div class="col-1">
-          <a (click)="addToWatchlist(chosenProduct)" class="float-end"><img class="details__star"
-              src="../../assets/star.png"></a>
-        </div>
+
+    <div class="row my-3">
+      <h3>Parameters</h3>
+      <div class="col">
+        <table class="table">
+          <tr>
+            <td>Brand: </td>
+            <td>{{chosenProduct.brand}}</td>
+          </tr>
+          <tr>
+            <td>Producent code: </td>
+            <td>{{chosenProduct.id}}</td>
+          </tr>
+        </table>
       </div>
-  
-      <div class="row my-3">
-        <div class="col">
-          <h6 class="mb-4">{{chosenProduct.description}}</h6>
-          <p><img class="description--aside__img me-3" src="../../assets/delivery.png">Free delivery</p>
-          <p><img class="description--aside__img me-3" src="../../assets/return.png">Free return</p>
-          <button (click)="addToCart(chosenProduct)" class="btn btn-warning w-100">Add To Cart<img
-              class="description--aside__img ms-2" src="../../assets/cart.png"></button>
-        </div>
+
+      <div class="col">
+        <table class="table">
+          <tr>
+            <td>Category: </td>
+            <td>{{chosenProduct.category}}</td>
+          </tr>
+          <tr>
+            <td>Units left: </td>
+            <td>{{chosenProduct.stock}}</td>
+          </tr>
+        </table>
       </div>
-  
     </div>
-  
+
   </div>
-  
+
+  <!-- RIGHT SIDE -->
+  <div class="col-4">
+
+    <div class="row">
+      <div class="col-11">
+        <h2>{{chosenProduct.title}}</h2>
+        <h3>${{chosenProduct.price}}</h3>
+        <span>
+          <app-stars [product]="chosenProduct"></app-stars>
+        </span>
+      </div>
+      <div class="col-1">
+        <a (click)="addToWatchlist(chosenProduct)" class="float-end"><img class="details__star"
+            src="../../assets/star.png"></a>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <div class="col">
+        <h6 class="mb-4">{{chosenProduct.description}}</h6>
+        <p><img class="description--aside__img me-3" src="../../assets/delivery.png">Free delivery</p>
+        <p><img class="description--aside__img me-3" src="../../assets/return.png">Free return</p>
+        <button (click)="addToCart(chosenProduct)" class="btn btn-warning w-100">Add To Cart<img
+            class="description--aside__img ms-2" src="../../assets/cart.png"></button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

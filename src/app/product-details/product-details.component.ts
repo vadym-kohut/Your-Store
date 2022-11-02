@@ -14,18 +14,27 @@ import { WatchlistDBService } from '../services/watchlist-db.service';
 export class ProductDetailsComponent implements OnInit {
   chosenProduct!: Product;
   chosenProductId!: number;
+  chosenProductImages!: any[];
 
   constructor(
     private productDB: ProductDBService,
     private route: ActivatedRoute,
     private watchlistDB: WatchlistDBService,
     private cartDB: CartDBService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params
       .pipe(switchMap((params) => this.getProductById(params['id'])))
-      .subscribe((product) => (this.chosenProduct = product));
+      .subscribe((product) => {
+        this.chosenProduct = product;
+        this.chosenProductImages = this.chosenProduct.images.map((img, i) => ({
+          "previewImageSrc": img,
+          "thumbnailImageSrc": img,
+          "alt": `Image ${i}`,
+          "title": `Image ${i}`
+        }))
+      });
   }
 
   getProductById(id: number) {
