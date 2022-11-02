@@ -50,9 +50,15 @@ export const getCartProductsTotalAmount = createSelector(
 export const cartReducer = createReducer(
     initialState,
     on(CartActions.addToCart, (state, action): CartState => {
-        return {
-            ...state,
-            cartProducts: [...state.cartProducts, action.product]
+        if (!state.cartProducts.find(element => element.id === action.product.id)) {
+            return {
+                ...state,
+                cartProducts: [...state.cartProducts, action.product]
+            }
+        } else {
+            return {
+                ...state
+            }
         }
     }),
     on(CartActions.removeFromCart, (state, action): CartState => {
