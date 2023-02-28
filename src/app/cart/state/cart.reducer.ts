@@ -13,7 +13,26 @@ export interface CartState {
 }
 
 const initialState: CartState = {
-    cartProducts: [],
+    cartProducts: [
+        {
+            "id": 19,
+            "title": "Skin Beauty Serum.",
+            "description": "Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m",
+            "price": 46,
+            "discountPercentage": 10.68,
+            "rating": 4.42,
+            "stock": 54,
+            "brand": "ROREC White Rice",
+            "category": "skincare",
+            "thumbnail": "https://i.dummyjson.com/data/products/19/thumbnail.jpg",
+            "images": [
+                "https://i.dummyjson.com/data/products/19/1.jpg",
+                "https://i.dummyjson.com/data/products/19/2.jpg",
+                "https://i.dummyjson.com/data/products/19/3.png",
+                "https://i.dummyjson.com/data/products/19/thumbnail.jpg"
+            ]
+        },
+    ],
     deliveryDate: ''
 }
 

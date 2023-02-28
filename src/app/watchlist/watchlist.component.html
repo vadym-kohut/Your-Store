@@ -1,8 +1,8 @@
-<h2 class="mb-4">Watchlist</h2>
+<div class="watchlist__header d-flex align-items-center mb-3">
+    <img src="../../assets/star.png" alt="watchlist icon" class="watchlist__header--icon me-2">
+    <span class="watchlist__header--title fs-2 fw-semibold">Watchlist</span>
+</div>
 
-<app-watchlist-product
-  [watchlistProducts$]="watchlistProducts$"
-  (removeFromWatchlistEvent)="removeFromWatchlist($event)"
-  (addToCartEvent)="addToCart($event)"
->
+<app-watchlist-product [watchlistProducts$]="watchlistProducts$"
+    (removeFromWatchlistEvent)="removeFromWatchlist($event)" (addToCartEvent)="addToCart($event)">
 </app-watchlist-product>
