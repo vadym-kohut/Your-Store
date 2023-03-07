@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 
 @Component({
-    selector: 'app-product',
+    selector: 'ys-product',
     templateUrl: './product.component.html',
     styleUrls: ['./product.component.css'],
 })
@@ -15,8 +15,6 @@ export class ProductComponent {
 
     @Output()
     addToCartEvent = new EventEmitter<Product>();
-
-    constructor() {}
 
     addToWatchlist(product: Product) {
         this.addToWatchlistEvent.emit(product);

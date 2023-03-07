@@ -8,8 +8,6 @@ import { Product } from '../interfaces/product';
 export class WatchlistDBService {
     private watchlistProducts$ = new BehaviorSubject<Product[]>([]);
 
-    constructor() {}
-
     getWatchlist$(): Observable<Product[]> {
         return this.watchlistProducts$.asObservable();
     }

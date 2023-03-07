@@ -12,7 +12,7 @@ import {
 } from './state/cart.reducer';
 
 @Component({
-    selector: 'app-cart',
+    selector: 'ys-cart',
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.css'],
 })
@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
     cartProductsTotalAmount$!: Observable<number>;
     deliveryDate = this.getDeliveryDate();
 
-    constructor(private store: Store<State>) {}
+    constructor(private store: Store<State>) { }
 
     ngOnInit(): void {
         this.cartProducts$ = this.store.select(getCartProducts);

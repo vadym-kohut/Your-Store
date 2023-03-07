@@ -8,8 +8,6 @@ import { Product } from '../interfaces/product';
 export class CartDBService {
     private cartProducts$ = new BehaviorSubject<Product[]>([]);
 
-    constructor() {}
-
     // GET
     getCartProducts$(): Observable<Product[]> {
         return this.cartProducts$.asObservable();

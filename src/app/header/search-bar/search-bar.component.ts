@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, filter, tap } from 'rxjs';
+import { debounceTime } from 'rxjs';
 import { QueryDBService } from 'src/app/services/query-db.service';
 
 @Component({
-    selector: 'app-search-bar',
+    selector: 'ys-search-bar',
     templateUrl: './search-bar.component.html',
     styleUrls: ['./search-bar.component.css'],
 })
@@ -12,7 +12,7 @@ export class SearchBarComponent implements OnInit {
     categories!: string[];
     productSearch = new FormControl('', { nonNullable: true });
 
-    constructor(private queryDB: QueryDBService) {}
+    constructor(private queryDB: QueryDBService) { }
 
     ngOnInit(): void {
         this.productSearch.valueChanges

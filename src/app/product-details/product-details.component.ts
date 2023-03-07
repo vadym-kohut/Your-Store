@@ -6,22 +6,29 @@ import { CartDBService } from '../services/cart-db.service';
 import { ProductDBService } from '../services/product-db.service';
 import { WatchlistDBService } from '../services/watchlist-db.service';
 
+export interface ProductImageData {
+    previewImageSrc: string;
+    thumbnailImageSrc: string;
+    alt: string;
+    title: string;
+}
+
 @Component({
-    selector: 'app-product-details',
+    selector: 'ys-product-details',
     templateUrl: './product-details.component.html',
     styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
     chosenProduct!: Product;
     chosenProductId!: number;
-    chosenProductImages!: any[];
+    chosenProductImages!: ProductImageData[];
 
     constructor(
         private productDB: ProductDBService,
         private route: ActivatedRoute,
         private watchlistDB: WatchlistDBService,
         private cartDB: CartDBService
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.route.params

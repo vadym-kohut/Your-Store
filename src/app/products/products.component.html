@@ -1,6 +1,6 @@
 <div class="row mt-4">
     <div class="col-2">
-        <app-categories></app-categories>
+        <ys-categories></ys-categories>
     </div>
 
     <div class="col-8">
@@ -16,21 +16,21 @@
 
         <div class="row">
             <div *ngFor="let product of products | async" class="col-4 mb-3">
-                <app-product
+                <ys-product
                     [product]="product"
                     (addToCartEvent)="
                         addToCart($event); setAddedProduct($event)
                     "
                     (addToWatchlistEvent)="addToWatchlist($event)"
                 >
-                </app-product>
+                </ys-product>
             </div>
         </div>
     </div>
 
     <div class="col-2">
-        <app-filters></app-filters>
+        <ys-filters></ys-filters>
     </div>
 
-    <!-- <app-toast></app-toast> -->
+    <!-- <ys-toast></ys-toast> -->
 </div>

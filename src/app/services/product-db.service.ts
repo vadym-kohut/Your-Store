@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { QueryDBService } from './query-db.service';
-import { combineLatest, map, Observable, pluck } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ProductDBService {
-    constructor(private http: HttpClient, private queryDB: QueryDBService) {}
+    constructor(private http: HttpClient, private queryDB: QueryDBService) { }
 
     getAllProducts$(): Observable<Product[]> {
         return this.http

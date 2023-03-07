@@ -13,7 +13,7 @@
             <span class="fs-4">YourStore</span>
         </a>
 
-        <app-search-bar></app-search-bar>
+        <ys-search-bar></ys-search-bar>
 
         <ul class="nav col-12 col-lg-auto ms-auto">
             <li>
@@ -42,7 +42,7 @@
             </li>
         </ul>
 
-        <div *ngIf="!(userData$ | async)" class="text-end">
+        <div *ngIf="(userData$ | async) === undefined" class="text-end">
             <button
                 type="button"
                 class="btn btn-outline-light"

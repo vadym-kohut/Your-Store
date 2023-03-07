@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -8,11 +8,11 @@ import { State } from './state/user.reducer';
 import * as UserActions from './state/user.actions';
 
 @Component({
-    selector: 'app-user',
+    selector: 'ys-user',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.css'],
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
     loginDataInvalid!: boolean;
 
     loginForm = new FormGroup<LoginForm>({
@@ -24,9 +24,7 @@ export class UserComponent implements OnInit {
         private userDB: UserDBService,
         private router: Router,
         private store: Store<State>
-    ) {}
-
-    ngOnInit(): void {}
+    ) { }
 
     onSubmit() {
         this.userDB.loginUser(this.loginForm.getRawValue()).subscribe({

@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 
 @Component({
-    selector: 'app-watchlist-product',
+    selector: 'ys-watchlist-product',
     templateUrl: './watchlist-product.component.html',
     styleUrls: ['./watchlist-product.component.css'],
 })
-export class WatchlistProductComponent implements OnInit {
+export class WatchlistProductComponent {
     @Input()
     watchlistProducts$ = new Observable<Product[]>();
 
@@ -16,10 +16,6 @@ export class WatchlistProductComponent implements OnInit {
 
     @Output()
     addToCartEvent = new EventEmitter<Product>();
-
-    constructor() {}
-
-    ngOnInit(): void {}
 
     removeFromWatchlist(product: Product): void {
         this.removeFromWatchlistEvent.emit(product);

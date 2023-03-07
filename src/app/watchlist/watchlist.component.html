@@ -7,9 +7,9 @@
     <span class="watchlist__header--title fs-2 fw-semibold">Watchlist</span>
 </div>
 
-<app-watchlist-product
+<ys-watchlist-product
     [watchlistProducts$]="watchlistProducts$"
     (removeFromWatchlistEvent)="removeFromWatchlist($event)"
     (addToCartEvent)="addToCart($event)"
 >
-</app-watchlist-product>
+</ys-watchlist-product>

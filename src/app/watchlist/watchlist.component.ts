@@ -7,14 +7,14 @@ import * as CartActions from '../cart/state/cart.actions';
 import * as WatchlistActions from './state/watchlist.actions';
 
 @Component({
-    selector: 'app-watchlist',
+    selector: 'ys-watchlist',
     templateUrl: './watchlist.component.html',
     styleUrls: ['./watchlist.component.css'],
 })
 export class WatchlistComponent implements OnInit {
     watchlistProducts$ = new Observable<Product[]>();
 
-    constructor(private store: Store<State>) {}
+    constructor(private store: Store<State>) { }
 
     ngOnInit(): void {
         this.watchlistProducts$ = this.store.select(getWatchlistProducts);

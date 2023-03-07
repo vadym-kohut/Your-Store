@@ -10,7 +10,7 @@ import * as CartActions from '../cart/state/cart.actions';
 import * as WatchlistActions from '../watchlist/state/watchlist.actions';
 
 @Component({
-    selector: 'app-products',
+    selector: 'ys-products',
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.css'],
 })
@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
         private queryDB: QueryDBService,
         private toastDB: ToastDBService,
         private store: Store<State>
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.products = this.store.select(getProducts);

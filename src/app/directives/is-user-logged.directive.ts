@@ -3,10 +3,10 @@ import { map, tap } from 'rxjs';
 import { UserDBService } from '../services/user-db.service';
 
 @Directive({
-    selector: '[isUserLogged]',
+    selector: '[ysIsUserLogged]',
 })
 export class IsUserLoggedDirective implements OnInit {
-    constructor(private userDB: UserDBService) {}
+    constructor(private userDB: UserDBService) { }
 
     ngOnInit(): void {
         this.userDB
@@ -19,5 +19,5 @@ export class IsUserLoggedDirective implements OnInit {
     }
 
     @HostBinding('disabled')
-    isDisabled: boolean = false;
+    isDisabled = false;
 }

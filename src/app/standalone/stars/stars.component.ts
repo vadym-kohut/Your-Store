@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Product } from 'src/app/interfaces/product';
 
 @Component({
-    selector: 'app-stars',
+    selector: 'ys-stars',
     standalone: true,
     imports: [CommonModule],
     templateUrl: './stars.component.html',
@@ -15,8 +15,6 @@ export class StarsComponent implements OnInit {
     emptyStarNumber!: number;
 
     @Input() product!: Product;
-
-    constructor() {}
 
     ngOnInit(): void {
         this.productRating = this.product.rating;

@@ -8,8 +8,6 @@ import { Product } from '../interfaces/product';
 export class ToastDBService {
     private addedProduct$ = new Subject<Product | null>();
 
-    constructor() {}
-
     setAddedProduct(product: Product): void {
         this.addedProduct$.next(product);
     }

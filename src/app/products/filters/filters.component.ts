@@ -5,7 +5,7 @@ import { FilterForm } from 'src/app/interfaces/filter-form';
 import { QueryDBService } from 'src/app/services/query-db.service';
 
 @Component({
-    selector: 'app-filters',
+    selector: 'ys-filters',
     templateUrl: './filters.component.html',
     styleUrls: ['./filters.component.css'],
 })
@@ -17,7 +17,7 @@ export class FiltersComponent implements OnInit {
         ratingQuery: new FormControl('', { nonNullable: true }),
     });
 
-    constructor(private queryDB: QueryDBService) {}
+    constructor(private queryDB: QueryDBService) { }
 
     ngOnInit(): void {
         this.filterForm.valueChanges

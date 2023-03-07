@@ -15,8 +15,6 @@ export class QueryDBService {
         ratingQuery: '',
     });
 
-    constructor() {}
-
     // SET
     setProductQuery(query: Partial<ProductQuery>): void {
         this.productQuery$.next({ ...this.productQuery$.getValue(), ...query });
