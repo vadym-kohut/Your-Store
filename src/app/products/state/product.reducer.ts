@@ -1,10 +1,15 @@
-import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { Product } from "src/app/interfaces/product";
-import * as AppState from "../../state/app.state";
-import * as ProductActions from "./product.actions";
+import {
+    createFeatureSelector,
+    createReducer,
+    createSelector,
+    on,
+} from '@ngrx/store';
+import { Product } from 'src/app/interfaces/product';
+import * as AppState from '../../state/app.state';
+import * as ProductActions from './product.actions';
 
 export interface State extends AppState.State {
-    product: ProductState
+    product: ProductState;
 }
 
 export interface ProductState {
@@ -12,15 +17,15 @@ export interface ProductState {
 }
 
 const initialState: ProductState = {
-    productList: []
-}
+    productList: [],
+};
 
 // Selectors
 const getProductFeatureState = createFeatureSelector<ProductState>('products');
 
 export const getProducts = createSelector(
     getProductFeatureState,
-    state => state.productList
+    (state) => state.productList
 );
 
 export const productReducer = createReducer(
@@ -28,7 +33,7 @@ export const productReducer = createReducer(
     on(ProductActions.loadProductsSuccess, (state, action): ProductState => {
         return {
             ...state,
-            productList: action.products
-        }
+            productList: action.products,
+        };
     })
 );

@@ -5,7 +5,7 @@ import { WatchlistComponent } from './watchlist.component';
 const routes: Routes = [{ path: '', component: WatchlistComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class WatchlistRoutingModule { }
+export class WatchlistRoutingModule {}

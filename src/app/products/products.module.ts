@@ -14,22 +14,21 @@ import { productReducer } from './state/product.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './state/product.effects';
 
-
 @NgModule({
-  declarations: [
-    ProductsComponent,
-    CategoriesComponent,
-    FiltersComponent,
-    ProductComponent,
-    IsUserLoggedDirective
-  ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    ReactiveFormsModule,
-    StarsComponent,
-    StoreModule.forFeature('products', productReducer),
-    EffectsModule.forFeature([ProductEffects])
-  ]
+    declarations: [
+        ProductsComponent,
+        CategoriesComponent,
+        FiltersComponent,
+        ProductComponent,
+        IsUserLoggedDirective,
+    ],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        ReactiveFormsModule,
+        StarsComponent,
+        StoreModule.forFeature('products', productReducer),
+        EffectsModule.forFeature([ProductEffects]),
+    ],
 })
-export class ProductsModule { }
+export class ProductsModule {}

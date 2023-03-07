@@ -1,23 +1,23 @@
 .product-card__remove-product img {
-  width: 25px;
+    width: 25px;
 }
 
 .product-card__add-product img {
-  width: 30px;
+    width: 30px;
 }
 
 .product-card__remove-product,
 .product-card__add-product {
-  position: absolute;
-  cursor: pointer;
+    position: absolute;
+    cursor: pointer;
 }
 
 .product-card__remove-product {
-  top: 10px;
-  right: 10px;
+    top: 10px;
+    right: 10px;
 }
 
 .product-card__add-product {
-  bottom: 10px;
-  right: 10px;
+    bottom: 10px;
+    right: 10px;
 }

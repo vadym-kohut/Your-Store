@@ -1,7 +1,12 @@
-import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { Product } from "src/app/interfaces/product";
-import * as AppState from "../../state/app.state";
-import * as CartActions from "./cart.actions";
+import {
+    createFeatureSelector,
+    createReducer,
+    createSelector,
+    on,
+} from '@ngrx/store';
+import { Product } from 'src/app/interfaces/product';
+import * as AppState from '../../state/app.state';
+import * as CartActions from './cart.actions';
 
 export interface State extends AppState.State {
     cart: CartState;
@@ -15,52 +20,55 @@ export interface CartState {
 const initialState: CartState = {
     cartProducts: [
         {
-            "id": 19,
-            "title": "Skin Beauty Serum.",
-            "description": "Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m",
-            "price": 46,
-            "discountPercentage": 10.68,
-            "rating": 4.42,
-            "stock": 54,
-            "brand": "ROREC White Rice",
-            "category": "skincare",
-            "thumbnail": "https://i.dummyjson.com/data/products/19/thumbnail.jpg",
-            "images": [
-                "https://i.dummyjson.com/data/products/19/1.jpg",
-                "https://i.dummyjson.com/data/products/19/2.jpg",
-                "https://i.dummyjson.com/data/products/19/3.png",
-                "https://i.dummyjson.com/data/products/19/thumbnail.jpg"
-            ]
+            id: 19,
+            title: 'Skin Beauty Serum.',
+            description:
+                'Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m',
+            price: 46,
+            discountPercentage: 10.68,
+            rating: 4.42,
+            stock: 54,
+            brand: 'ROREC White Rice',
+            category: 'skincare',
+            thumbnail: 'https://i.dummyjson.com/data/products/19/thumbnail.jpg',
+            images: [
+                'https://i.dummyjson.com/data/products/19/1.jpg',
+                'https://i.dummyjson.com/data/products/19/2.jpg',
+                'https://i.dummyjson.com/data/products/19/3.png',
+                'https://i.dummyjson.com/data/products/19/thumbnail.jpg',
+            ],
         },
     ],
-    deliveryDate: ''
-}
+    deliveryDate: '',
+};
 
 // Selectors
 const getCartFeatureState = createFeatureSelector<CartState>('cart');
 
 export const getCartProducts = createSelector(
     getCartFeatureState,
-    state => state.cartProducts
+    (state) => state.cartProducts
 );
 
 export const getDeliveryDate = createSelector(
     getCartFeatureState,
-    state => state.deliveryDate
+    (state) => state.deliveryDate
 );
 
 export const getCartProductNumber = createSelector(
     getCartFeatureState,
-    state => state.cartProducts.length
+    (state) => state.cartProducts.length
 );
 
 export const getCartProductsTotalAmount = createSelector(
     getCartFeatureState,
-    state => {
+    (state) => {
         if (state.cartProducts.length) {
-            return state.cartProducts.map(product => product.price).reduce((prev, next) => prev + next)
+            return state.cartProducts
+                .map((product) => product.price)
+                .reduce((prev, next) => prev + next);
         } else {
-            return 0
+            return 0;
         }
     }
 );
@@ -69,21 +77,27 @@ export const getCartProductsTotalAmount = createSelector(
 export const cartReducer = createReducer(
     initialState,
     on(CartActions.addToCart, (state, action): CartState => {
-        if (!state.cartProducts.find(element => element.id === action.product.id)) {
+        if (
+            !state.cartProducts.find(
+                (element) => element.id === action.product.id
+            )
+        ) {
             return {
                 ...state,
-                cartProducts: [...state.cartProducts, action.product]
-            }
+                cartProducts: [...state.cartProducts, action.product],
+            };
         } else {
             return {
-                ...state
-            }
+                ...state,
+            };
         }
     }),
     on(CartActions.removeFromCart, (state, action): CartState => {
         return {
             ...state,
-            cartProducts: state.cartProducts.filter(product => product !== action.product)
-        }
+            cartProducts: state.cartProducts.filter(
+                (product) => product !== action.product
+            ),
+        };
     })
 );

@@ -12,7 +12,7 @@ import * as WatchlistActions from '../watchlist/state/watchlist.actions';
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
-    styleUrls: ['./products.component.css']
+    styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
     products = new Observable<Product[]>();
@@ -22,12 +22,14 @@ export class ProductsComponent implements OnInit {
         private queryDB: QueryDBService,
         private toastDB: ToastDBService,
         private store: Store<State>
-    ) { }
+    ) {}
 
     ngOnInit(): void {
-        this.products = this.store.select(getProducts)
-        this.store.dispatch(ProductActions.loadProducts())
-        this.queryDB.getProductQuery$().subscribe(product => this.category = product.categoryQuery);
+        this.products = this.store.select(getProducts);
+        this.store.dispatch(ProductActions.loadProducts());
+        this.queryDB
+            .getProductQuery$()
+            .subscribe((product) => (this.category = product.categoryQuery));
     }
 
     addToWatchlist(product: Product): void {

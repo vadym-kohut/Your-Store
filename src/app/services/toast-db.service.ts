@@ -3,22 +3,22 @@ import { Observable, Subject } from 'rxjs';
 import { Product } from '../interfaces/product';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ToastDBService {
-  private addedProduct$ = new Subject<Product | null>();
+    private addedProduct$ = new Subject<Product | null>();
 
-  constructor() { }
+    constructor() {}
 
-  setAddedProduct(product: Product): void {
-    this.addedProduct$.next(product);
-  }
+    setAddedProduct(product: Product): void {
+        this.addedProduct$.next(product);
+    }
 
-  getAddedProduct$(): Observable<Product | null> {
-    return this.addedProduct$.asObservable();
-  }
+    getAddedProduct$(): Observable<Product | null> {
+        return this.addedProduct$.asObservable();
+    }
 
-  hideToast(): void {
-    this.addedProduct$.next(null);
-  }
+    hideToast(): void {
+        this.addedProduct$.next(null);
+    }
 }

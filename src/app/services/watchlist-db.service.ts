@@ -3,32 +3,35 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class WatchlistDBService {
-  private watchlistProducts$ = new BehaviorSubject<Product[]>([]);
+    private watchlistProducts$ = new BehaviorSubject<Product[]>([]);
 
-  constructor() { }
+    constructor() {}
 
-  getWatchlist$(): Observable<Product[]> {
-    return this.watchlistProducts$.asObservable();
-  }
-
-  addToWatchlist(product: Product): void {
-    if (!this.watchlistProducts$.getValue().includes(product)) {
-      this.watchlistProducts$.next([...this.watchlistProducts$.getValue(), product]);
+    getWatchlist$(): Observable<Product[]> {
+        return this.watchlistProducts$.asObservable();
     }
-  }
 
-  removeFromWatchlist(product: Product): void {
-    this.watchlistProducts$.next(
-      this.watchlistProducts$.getValue().filter(p => p !== product)
-    );
-  }
+    addToWatchlist(product: Product): void {
+        if (!this.watchlistProducts$.getValue().includes(product)) {
+            this.watchlistProducts$.next([
+                ...this.watchlistProducts$.getValue(),
+                product,
+            ]);
+        }
+    }
 
-  getWatchlistProductNumber$(): Observable<number> {
-    return this.watchlistProducts$.pipe(
-      map((products: Product[]) => products.length)
-    );
-  }
+    removeFromWatchlist(product: Product): void {
+        this.watchlistProducts$.next(
+            this.watchlistProducts$.getValue().filter((p) => p !== product)
+        );
+    }
+
+    getWatchlistProductNumber$(): Observable<number> {
+        return this.watchlistProducts$.pipe(
+            map((products: Product[]) => products.length)
+        );
+    }
 }

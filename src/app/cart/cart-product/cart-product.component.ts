@@ -14,7 +14,7 @@ export class CartProductComponent {
     @Output()
     removeFromCartEvent = new EventEmitter<Product>();
 
-    constructor() { }
+    constructor() {}
 
     removeFromCart(product: Product): void {
         this.removeFromCartEvent.emit(product);

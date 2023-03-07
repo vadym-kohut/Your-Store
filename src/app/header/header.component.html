@@ -1,38 +1,62 @@
 <header class="p-2 bg-dark">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-  
-      <a routerLink="/" class="d-flex align-items-center text-decoration-none text-warning mx-3">
-        <img class="header__logo me-2" src="../../assets/shopping-bags.png">
-        <span class="fs-4">YourStore</span>
-      </a>
-  
-      <app-search-bar></app-search-bar>
-  
-      <ul class="nav col-12 col-lg-auto ms-auto">
+    <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+        <a
+            routerLink="/"
+            class="d-flex align-items-center text-decoration-none text-warning mx-3"
+        >
+            <img
+                class="header__logo me-2"
+                src="../../assets/shopping-bags.png"
+            />
+            <span class="fs-4">YourStore</span>
+        </a>
 
-        <li>
-          <a routerLink="/watchlist" class="nav-link"><img class="nav-link__img" src="../../assets/star.png"></a>
-          <span class="watchlist-product-number" *ngIf="watchlistProductNumber$ | async as watchlistProductNumber">{{watchlistProductNumber}}</span>
-        </li>
+        <app-search-bar></app-search-bar>
 
-        <li class="cart__li">
-          <a routerLink="/cart" class="nav-link me-2 ps-0"><img class="nav-link__img" src="../../assets/cart.png"></a>
-          <span class="cart-product-number" *ngIf="cartProductsNumber$ | async as cartProductsNumber">{{cartProductsNumber}}</span>
-        </li>
+        <ul class="nav col-12 col-lg-auto ms-auto">
+            <li>
+                <a routerLink="/watchlist" class="nav-link"
+                    ><img class="nav-link__img" src="../../assets/star.png"
+                /></a>
+                <span
+                    class="watchlist-product-number"
+                    *ngIf="
+                        watchlistProductNumber$
+                            | async as watchlistProductNumber
+                    "
+                    >{{ watchlistProductNumber }}</span
+                >
+            </li>
 
-      </ul>
-  
-      <div *ngIf="!(userData$ | async)" class="text-end">
-        <button type="button" class="btn btn-outline-light" routerLink="/user">Login</button>
-        <button type="button" class="btn btn-warning mx-2">Sign-up</button>
-      </div>
-  
-      <ng-container *ngIf="userData$ | async">
-        <div>
-          <img class="user__img" [src]="(userData$ | async)?.image">
+            <li class="cart__li">
+                <a routerLink="/cart" class="nav-link me-2 ps-0"
+                    ><img class="nav-link__img" src="../../assets/cart.png"
+                /></a>
+                <span
+                    class="cart-product-number"
+                    *ngIf="cartProductsNumber$ | async as cartProductsNumber"
+                    >{{ cartProductsNumber }}</span
+                >
+            </li>
+        </ul>
+
+        <div *ngIf="!(userData$ | async)" class="text-end">
+            <button
+                type="button"
+                class="btn btn-outline-light"
+                routerLink="/user"
+            >
+                Login
+            </button>
+            <button type="button" class="btn btn-warning mx-2">Sign-up</button>
         </div>
-      </ng-container>
-  
+
+        <ng-container *ngIf="userData$ | async">
+            <div>
+                <img class="user__img" [src]="(userData$ | async)?.image" />
+            </div>
+        </ng-container>
     </div>
-  </header>
-  
+</header>

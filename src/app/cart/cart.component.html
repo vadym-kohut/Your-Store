@@ -1,37 +1,48 @@
 <div class="row">
-  <!-- LEFT SIDE -->
-  <div class="cart-header col-9">
-    <div class="row">
-      <div class="col-10 d-flex align-items-center">
-        <img class="cart__header--icon me-2" src="../../assets/cart.png" alt="cart icon">
-        <span class="watchlist__header--title fs-2 fw-semibold">Shopping Cart</span>
-      </div>
-      <div class="col-2">
-        <h5>Items: {{ cartProductsNumber$ | async }}</h5>
-      </div>
+    <!-- LEFT SIDE -->
+    <div class="cart-header col-9">
+        <div class="row">
+            <div class="col-10 d-flex align-items-center">
+                <img
+                    class="cart__header--icon me-2"
+                    src="../../assets/cart.png"
+                    alt="cart icon"
+                />
+                <span class="watchlist__header--title fs-2 fw-semibold"
+                    >Shopping Cart</span
+                >
+            </div>
+            <div class="col-2">
+                <h5>Items: {{ cartProductsNumber$ | async }}</h5>
+            </div>
+        </div>
+
+        <app-cart-product
+            [cartProducts$]="cartProducts$"
+            (removeFromCartEvent)="removeFromCart($event)"
+        ></app-cart-product>
     </div>
 
-    <app-cart-product [cartProducts$]="cartProducts$" (removeFromCartEvent)="removeFromCart($event)"></app-cart-product>
-  </div>
+    <!-- RIGHT SIDE -->
+    <div class="col-3 cart__summary">
+        <h3>Summary</h3>
 
-  <!-- RIGHT SIDE -->
-  <div class="col-3 cart__summary">
-    <h3>Summary</h3>
+        <table class="table">
+            <tr>
+                <td>Shipping</td>
+                <td>Gratis</td>
+            </tr>
+            <tr>
+                <td>Total amount</td>
+                <td>${{ cartProductsTotalAmount$ | async }}</td>
+            </tr>
+        </table>
 
-    <table class="table">
-      <tr>
-        <td>Shipping</td>
-        <td>Gratis</td>
-      </tr>
-      <tr>
-        <td>Total amount</td>
-        <td>${{ cartProductsTotalAmount$ | async }}</td>
-      </tr>
-    </table>
+        <h6>Expected shipping delivery</h6>
+        <span>{{ deliveryDate }}</span>
 
-    <h6>Expected shipping delivery</h6>
-    <span>{{ deliveryDate }}</span>
-
-    <button class="btn btn-outline-success w-100 mt-5">Go to checkout</button>
-  </div>
+        <button class="btn btn-outline-success w-100 mt-5">
+            Go to checkout
+        </button>
+    </div>
 </div>

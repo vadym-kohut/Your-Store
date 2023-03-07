@@ -6,16 +6,13 @@ import { ProductDetailsComponent } from './product-details.component';
 import { StarsComponent } from '../standalone/stars/stars.component';
 import { GalleriaModule } from 'primeng/galleria';
 
-
 @NgModule({
-  declarations: [
-    ProductDetailsComponent,
-  ],
-  imports: [
-    CommonModule,
-    ProductDetailsRoutingModule,
-    StarsComponent,
-    GalleriaModule
-  ]
+    declarations: [ProductDetailsComponent],
+    imports: [
+        CommonModule,
+        ProductDetailsRoutingModule,
+        StarsComponent,
+        GalleriaModule,
+    ],
 })
-export class ProductDetailsModule { }
+export class ProductDetailsModule {}

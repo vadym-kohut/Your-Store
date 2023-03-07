@@ -1,14 +1,22 @@
 <div hover class="card">
-  <img routerLink="/product-details/{{product.id}}" src={{product.thumbnail}} class="card-img-top product--card__img">
-  <div class="card-body">
-    <h5 class="card-title">{{product.title}}</h5>
-    <p class="card-text mb-0">{{product.price}} $</p>
-    <p class="card-text">
-      <app-stars [product]="product"></app-stars>
-    </p>
-  </div>
-  <div class="card__btn">
-    <a (click)="addToWatchlist(product)" class="product-card__star btn"><img src="../../assets/star.png"></a>
-    <a (click)="addToCart(product)" class="product-card__cart btn"><img src="../../assets/cart.png"></a>
-  </div>
+    <img
+        routerLink="/product-details/{{ product.id }}"
+        src="{{ product.thumbnail }}"
+        class="card-img-top product--card__img"
+    />
+    <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text mb-0">{{ product.price }} $</p>
+        <p class="card-text">
+            <app-stars [product]="product"></app-stars>
+        </p>
+    </div>
+    <div class="card__btn">
+        <a (click)="addToWatchlist(product)" class="product-card__star btn"
+            ><img src="../../assets/star.png"
+        /></a>
+        <a (click)="addToCart(product)" class="product-card__cart btn"
+            ><img src="../../assets/cart.png"
+        /></a>
+    </div>
 </div>

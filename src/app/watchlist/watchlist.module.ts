@@ -7,16 +7,12 @@ import { WatchlistProductComponent } from './watchlist-product/watchlist-product
 import { StoreModule } from '@ngrx/store';
 import { watchlistReducer } from './state/watchlist.reducer';
 
-
 @NgModule({
-  declarations: [
-    WatchlistComponent,
-    WatchlistProductComponent
-  ],
-  imports: [
-    CommonModule,
-    WatchlistRoutingModule,
-    StoreModule.forFeature('watchlist', watchlistReducer)
-  ]
+    declarations: [WatchlistComponent, WatchlistProductComponent],
+    imports: [
+        CommonModule,
+        WatchlistRoutingModule,
+        StoreModule.forFeature('watchlist', watchlistReducer),
+    ],
 })
-export class WatchlistModule { }
+export class WatchlistModule {}

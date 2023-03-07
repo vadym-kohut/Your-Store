@@ -16,24 +16,28 @@ import { appReducer } from './state/app.state';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SearchBarComponent,
-    ToastComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ name: 'Your Store App Devtools', maxAge: 25, logOnly: environment.production }),
-    NgbModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        SearchBarComponent,
+        ToastComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        StoreModule.forRoot(appReducer),
+        EffectsModule.forRoot([]),
+        StoreDevtoolsModule.instrument({
+            name: 'Your Store App Devtools',
+            maxAge: 25,
+            logOnly: environment.production,
+        }),
+        NgbModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

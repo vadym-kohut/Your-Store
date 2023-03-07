@@ -7,26 +7,24 @@ import * as CartActions from '../cart/state/cart.actions';
 import * as WatchlistActions from './state/watchlist.actions';
 
 @Component({
-  selector: 'app-watchlist',
-  templateUrl: './watchlist.component.html',
-  styleUrls: ['./watchlist.component.css'],
+    selector: 'app-watchlist',
+    templateUrl: './watchlist.component.html',
+    styleUrls: ['./watchlist.component.css'],
 })
 export class WatchlistComponent implements OnInit {
-  watchlistProducts$ = new Observable<Product[]>();
+    watchlistProducts$ = new Observable<Product[]>();
 
-  constructor(
-    private store: Store<State>
-  ) { }
+    constructor(private store: Store<State>) {}
 
-  ngOnInit(): void {
-    this.watchlistProducts$ = this.store.select(getWatchlistProducts);
-  }
+    ngOnInit(): void {
+        this.watchlistProducts$ = this.store.select(getWatchlistProducts);
+    }
 
-  removeFromWatchlist(product: Product): void {
-    this.store.dispatch(WatchlistActions.removeFromWatchlist({ product }));
-  }
+    removeFromWatchlist(product: Product): void {
+        this.store.dispatch(WatchlistActions.removeFromWatchlist({ product }));
+    }
 
-  addToCart(product: Product): void {
-    this.store.dispatch(CartActions.addToCart({ product }))
-  }
+    addToCart(product: Product): void {
+        this.store.dispatch(CartActions.addToCart({ product }));
+    }
 }
