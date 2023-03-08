@@ -2,7 +2,7 @@ import {
     createFeatureSelector,
     createReducer,
     createSelector,
-    on,
+    on
 } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/product';
 import * as AppState from '../../state/app.state';
@@ -34,10 +34,29 @@ const initialState: WatchlistState = {
                 'https://i.dummyjson.com/data/products/1/2.jpg',
                 'https://i.dummyjson.com/data/products/1/3.jpg',
                 'https://i.dummyjson.com/data/products/1/4.jpg',
-                'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-            ],
+                'https://i.dummyjson.com/data/products/1/thumbnail.jpg'
+            ]
         },
-    ],
+        {
+            'id': 29,
+            'title': 'Handcraft Chinese style',
+            'description': 'Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate',
+            'price': 60,
+            'discountPercentage': 15.34,
+            'rating': 4.44,
+            'stock': 7,
+            'brand': 'luxury palace',
+            'category': 'home-decoration',
+            'thumbnail': 'https://i.dummyjson.com/data/products/29/thumbnail.webp',
+            'images': [
+                'https://i.dummyjson.com/data/products/29/1.jpg',
+                'https://i.dummyjson.com/data/products/29/2.jpg',
+                'https://i.dummyjson.com/data/products/29/3.webp',
+                'https://i.dummyjson.com/data/products/29/4.webp',
+                'https://i.dummyjson.com/data/products/29/thumbnail.webp'
+            ]
+        }
+    ]
 };
 
 // Selectors
@@ -65,11 +84,11 @@ export const watchlistReducer = createReducer(
         ) {
             return {
                 ...state,
-                watchlistProducts: [...state.watchlistProducts, action.product],
+                watchlistProducts: [...state.watchlistProducts, action.product]
             };
         } else {
             return {
-                ...state,
+                ...state
             };
         }
     }),
@@ -80,7 +99,7 @@ export const watchlistReducer = createReducer(
                 ...state,
                 watchlistProducts: state.watchlistProducts.filter(
                     (product) => product !== action.product
-                ),
+                )
             };
         }
     )
