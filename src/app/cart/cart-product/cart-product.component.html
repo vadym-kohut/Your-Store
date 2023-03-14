@@ -1,24 +1,21 @@
-<div
-    *ngFor="let product of cartProducts$ | async"
-    class="row my-3 p-1 cart__product"
->
-    <div class="col-4">
-        <img src="{{ product.thumbnail }}" class="img-fluid rounded" />
-    </div>
-    <div class="col-4">
-        <h6 class="mb-0">{{ product.title }}</h6>
-        <span>{{ product.brand }}</span
-        ><br />
-        <span>${{ product.price }}</span>
-    </div>
-    <div class="col-3">
-        <!-- number changer -->
-    </div>
-    <div class="col-1 my-auto">
-        <a
-            (click)="removeFromCart(product)"
-            class="product-card__remove-product"
-            ><img src="../../assets/trash.png" class="w-75"
-        /></a>
+<div *ngFor="let product of cartProducts$ | async" class="card my-3">
+    <div class="d-flex align-items-center justify-content-around">
+        <div>
+            <img src="{{ product.thumbnail }}" class="img-fluid rounded product-card__img" />
+        </div>
+        <div class="card-body">
+            <h5 class="card-title d-inline-block">{{ product.title }}</h5><br>
+            <p class="card-text d-inline-block">{{ product.brand }}</p>
+            <p class="card-text">
+                <small class="text-muted">$ {{ product.price }}</small>
+            </p>
+        </div>
+            <!-- number changer -->
+        <div class="ms-auto me-2">
+            <a (click)="removeFromCart(product)"
+               class="product-card__remove-product"
+            ><img src="../../assets/trash.png" class="cart__delete-item--img"
+            /></a>
+        </div>
     </div>
 </div>

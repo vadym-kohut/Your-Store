@@ -8,13 +8,13 @@ import {
     getCartProductNumber,
     getCartProducts,
     getCartProductsTotalAmount,
-    State,
+    State
 } from './state/cart.reducer';
 
 @Component({
     selector: 'ys-cart',
     templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.css'],
+    styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
     cartProducts$!: Observable<Product[]>;
@@ -22,7 +22,8 @@ export class CartComponent implements OnInit {
     cartProductsTotalAmount$!: Observable<number>;
     deliveryDate = this.getDeliveryDate();
 
-    constructor(private store: Store<State>) { }
+    constructor(private store: Store<State>) {
+    }
 
     ngOnInit(): void {
         this.cartProducts$ = this.store.select(getCartProducts);
@@ -40,10 +41,30 @@ export class CartComponent implements OnInit {
         function padTo2Digits(num: number) {
             return num.toString().padStart(2, '0');
         }
+
         const date = new Date(new Date().setDate(new Date().getDate() + 2));
         return [
             padTo2Digits(date.getMonth() + 1),
-            padTo2Digits(date.getDate()),
+            padTo2Digits(date.getDate())
         ].join('/');
     }
+
+
+    array = [{
+        qwe: 'qwe',
+        asd: 0
+    }, {
+        zxc: 'zxc',
+        asd: 0
+    }];
+
+    array1 = [{
+        aaa: 'qwe',
+        bbb: 0
+    }, {
+        aaa: 'zxc',
+        bbb: 0
+    }];
+
+
 }

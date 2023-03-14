@@ -1,28 +1,26 @@
-<div hover *ngFor="let product of watchlistProducts$ | async" class="card mb-3">
-    <div class="row g-0">
-        <div class="col-3">
+<div hover *ngFor="let product of watchlistProducts$ | async" class="card my-3">
+    <div class="d-flex">
+        <div>
             <img
                 src="{{ product.thumbnail }}"
-                class="img-fluid rounded-start"
+                class="product-card__img img-fluid rounded-start"
             />
         </div>
-        <div class="col-9">
+        <div>
             <div class="card-body">
-                <h5 class="card-title">{{ product.title }}</h5>
+                <h5 class="card-title d-inline-block">{{ product.title }}</h5>
                 <p class="card-text">{{ product.description }}</p>
                 <p class="card-text">
                     <small class="text-muted"
-                        >{{ product.stock }} units left</small
-                    >
+                    >{{ product.stock }} units left</small>
                 </p>
             </div>
-            <a
-                (click)="removeFromWatchlist(product)"
+            <a (click)="removeFromWatchlist(product)"
                 class="product-card__remove-product"
-                ><img src="../../assets/unstar.png"
+            ><img src="../../assets/unstar.png"
             /></a>
             <a (click)="addToCart(product)" class="product-card__add-product"
-                ><img src="../../assets/cart.png"
+            ><img src="../../assets/cart.png"
             /></a>
         </div>
     </div>

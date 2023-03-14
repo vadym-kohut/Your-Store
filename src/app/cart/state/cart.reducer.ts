@@ -2,7 +2,7 @@ import {
     createFeatureSelector,
     createReducer,
     createSelector,
-    on,
+    on
 } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/product';
 import * as AppState from '../../state/app.state';
@@ -35,11 +35,30 @@ const initialState: CartState = {
                 'https://i.dummyjson.com/data/products/19/1.jpg',
                 'https://i.dummyjson.com/data/products/19/2.jpg',
                 'https://i.dummyjson.com/data/products/19/3.png',
-                'https://i.dummyjson.com/data/products/19/thumbnail.jpg',
-            ],
+                'https://i.dummyjson.com/data/products/19/thumbnail.jpg'
+            ]
         },
+        {
+            'id': 29,
+            'title': 'Handcraft Chinese style',
+            'description': 'Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate',
+            'price': 60,
+            'discountPercentage': 15.34,
+            'rating': 4.44,
+            'stock': 7,
+            'brand': 'luxury palace',
+            'category': 'home-decoration',
+            'thumbnail': 'https://i.dummyjson.com/data/products/29/thumbnail.webp',
+            'images': [
+                'https://i.dummyjson.com/data/products/29/1.jpg',
+                'https://i.dummyjson.com/data/products/29/2.jpg',
+                'https://i.dummyjson.com/data/products/29/3.webp',
+                'https://i.dummyjson.com/data/products/29/4.webp',
+                'https://i.dummyjson.com/data/products/29/thumbnail.webp'
+            ]
+        }
     ],
-    deliveryDate: '',
+    deliveryDate: ''
 };
 
 // Selectors
@@ -84,11 +103,11 @@ export const cartReducer = createReducer(
         ) {
             return {
                 ...state,
-                cartProducts: [...state.cartProducts, action.product],
+                cartProducts: [...state.cartProducts, action.product]
             };
         } else {
             return {
-                ...state,
+                ...state
             };
         }
     }),
@@ -97,7 +116,7 @@ export const cartReducer = createReducer(
             ...state,
             cartProducts: state.cartProducts.filter(
                 (product) => product !== action.product
-            ),
+            )
         };
     })
 );

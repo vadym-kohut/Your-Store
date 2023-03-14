@@ -2,18 +2,12 @@
     <!-- LEFT SIDE -->
     <div class="cart-header col-9">
         <div class="row">
-            <div class="col-10 d-flex align-items-center">
-                <img
-                    class="cart__header--icon me-2"
-                    src="../../assets/cart.png"
-                    alt="cart icon"
-                />
-                <span class="watchlist__header--title fs-2 fw-semibold"
-                    >Shopping Cart</span
-                >
-            </div>
-            <div class="col-2">
-                <h5>Items: {{ cartProductsNumber$ | async }}</h5>
+            <div class="d-flex align-items-center">
+                <img class="cart__header--icon me-2"
+                     src="../../assets/cart.png"
+                     alt="cart icon" />
+                <span class="watchlist__header--title fs-2 fw-semibold">Cart</span>
+                <span class="ms-auto fs-4 fw-semibold">Items: {{ cartProductsNumber$ | async }}</span>
             </div>
         </div>
 
