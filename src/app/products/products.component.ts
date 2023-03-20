@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { QueryDBService } from '../services/query-db.service';
-import { ToastDBService } from '../services/toast-db.service';
 import { getProducts, State } from './state/product.reducer';
 import * as ProductActions from './state/product.actions';
 import * as CartActions from '../cart/state/cart.actions';
@@ -20,7 +19,6 @@ export class ProductsComponent implements OnInit {
 
     constructor(
         private queryDB: QueryDBService,
-        private toastDB: ToastDBService,
         private store: Store<State>
     ) { }
 
@@ -38,10 +36,6 @@ export class ProductsComponent implements OnInit {
 
     addToCart(product: Product): void {
         this.store.dispatch(CartActions.addToCart({ product }));
-    }
-
-    setAddedProduct(product: Product) {
-        this.toastDB.setAddedProduct(product);
     }
 
     clearProductCategoryQuery() {

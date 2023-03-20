@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Product } from '../interfaces/product';
-import { CartDBService } from '../services/cart-db.service';
-import { ProductDBService } from '../services/product-db.service';
-import { WatchlistDBService } from '../services/watchlist-db.service';
+import * as CartActions from '../cart/state/cart.actions';
+import { Store } from '@ngrx/store';
+import { State } from '../products/state/product.reducer';
+import * as WatchlistActions from '../watchlist/state/watchlist.actions';
+import { HttpClient } from '@angular/common/http';
 
 export interface ProductImageData {
     previewImageSrc: string;
@@ -24,15 +26,14 @@ export class ProductDetailsComponent implements OnInit {
     chosenProductImages!: ProductImageData[];
 
     constructor(
-        private productDB: ProductDBService,
         private route: ActivatedRoute,
-        private watchlistDB: WatchlistDBService,
-        private cartDB: CartDBService
+        private store: Store<State>,
+        private  http: HttpClient
     ) { }
 
     ngOnInit(): void {
         this.route.params
-            .pipe(switchMap((params) => this.getProductById(params['id'])))
+            .pipe(switchMap((params) => this.getProductById$(params['id'])))
             .subscribe((product) => {
                 this.chosenProduct = product;
                 this.chosenProductImages = this.chosenProduct.images.map(
@@ -46,15 +47,16 @@ export class ProductDetailsComponent implements OnInit {
             });
     }
 
-    getProductById(id: number) {
-        return this.productDB.getProductById$(id);
+    addToWatchlist(product: Product): void {
+        this.store.dispatch(WatchlistActions.addToWatchlist({ product }));
     }
 
-    addToWatchlist(chosenProduct: Product) {
-        this.watchlistDB.addToWatchlist(chosenProduct);
+    addToCart(product: Product): void {
+        this.store.dispatch(CartActions.addToCart({ product }));
     }
 
-    addToCart(chosenProduct: Product) {
-        this.cartDB.addToCart(chosenProduct);
+    //!! MOVE TO PRODUCT STATE
+    getProductById$(id: number): Observable<Product> {
+        return this.http.get<Product>(`https://dummyjson.com/products/${id}`);
     }
 }

@@ -18,9 +18,7 @@
             <div *ngFor="let product of products | async" class="col-4 mb-3">
                 <ys-product
                     [product]="product"
-                    (addToCartEvent)="
-                        addToCart($event); setAddedProduct($event)
-                    "
+                    (addToCartEvent)="addToCart($event);"
                     (addToWatchlistEvent)="addToWatchlist($event)"
                 >
                 </ys-product>
