@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QueryDBService } from 'src/app/services/query-db.service';
 import { Store } from '@ngrx/store';
-import { getCategories, State } from '../state/product.reducer';
+import { getCategories } from '../state/product.reducer';
 import * as ProductActions from '../state/product.actions';
+import * as ProductQueryActions from '../../products/state/query.actions';
+import { State } from '../../state/app.state';
 
 @Component({
     selector: 'ys-categories',
@@ -14,7 +15,6 @@ export class CategoriesComponent implements OnInit {
     categories = new Observable<string[]>();
 
     constructor(
-        private queryDB: QueryDBService,
         private store: Store<State>
     ) {
     }
@@ -25,6 +25,6 @@ export class CategoriesComponent implements OnInit {
     }
 
     setProductCategoryQuery(query: string) {
-        this.queryDB.setProductQuery({ categoryQuery: query });
+        this.store.dispatch(ProductQueryActions.setProductQuery({ categoryQuery: query }));
     }
 }

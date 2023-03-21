@@ -8,12 +8,14 @@ import {
     watchlistReducer,
     WatchlistState,
 } from '../watchlist/state/watchlist.reducer';
+import { productQueryReducer, ProductQueryState } from '../products/state/query.reducer';
 
 export interface State {
     cart: CartState;
     products: ProductState;
     watchlist: WatchlistState;
     user: UserState;
+    productQuery: ProductQueryState;
 }
 
 export const appReducer = {
@@ -21,4 +23,5 @@ export const appReducer = {
     products: productReducer,
     watchlist: watchlistReducer,
     user: userReducer,
+    productQuery: productQueryReducer
 };

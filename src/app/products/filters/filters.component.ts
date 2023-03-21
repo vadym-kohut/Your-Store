@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { FilterForm } from 'src/app/interfaces/filter-form';
-import { QueryDBService } from 'src/app/services/query-db.service';
+import { Store } from '@ngrx/store';
+import { State } from '../state/query.reducer';
+import * as ProductQueryActions from '../../products/state/query.actions';
 
 @Component({
     selector: 'ys-filters',
@@ -17,13 +19,15 @@ export class FiltersComponent implements OnInit {
         ratingQuery: new FormControl('', { nonNullable: true }),
     });
 
-    constructor(private queryDB: QueryDBService) { }
+    constructor(
+        private store: Store<State>
+    ) { }
 
     ngOnInit(): void {
         this.filterForm.valueChanges
             .pipe(debounceTime(500))
             .subscribe((value) => {
-                this.queryDB.setProductQuery(value);
+                this.store.dispatch(ProductQueryActions.setProductQuery(value));
             });
     }
 

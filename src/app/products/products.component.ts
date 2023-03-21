@@ -2,32 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
-import { QueryDBService } from '../services/query-db.service';
-import { getProducts, State } from './state/product.reducer';
+import { getProducts } from './state/product.reducer';
+import { State } from '../state/app.state';
 import * as ProductActions from './state/product.actions';
 import * as CartActions from '../cart/state/cart.actions';
 import * as WatchlistActions from '../watchlist/state/watchlist.actions';
+import * as ProductQueryActions from '../products/state/query.actions';
+import { getProductCategoryQuery } from './state/query.reducer';
 
 @Component({
     selector: 'ys-products',
     templateUrl: './products.component.html',
-    styleUrls: ['./products.component.css'],
+    styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-    products = new Observable<Product[]>();
-    category!: string | null;
+    products$ = new Observable<Product[]>();
+    category$ = new Observable<string | null>();
 
     constructor(
-        private queryDB: QueryDBService,
         private store: Store<State>
-    ) { }
+    ) {
+    }
 
     ngOnInit(): void {
-        this.products = this.store.select(getProducts);
+        this.products$ = this.store.select(getProducts);
         this.store.dispatch(ProductActions.loadProducts());
-        this.queryDB
-            .getProductQuery$()
-            .subscribe((product) => (this.category = product.categoryQuery));
+        this.category$ = this.store.select(getProductCategoryQuery);
     }
 
     addToWatchlist(product: Product): void {
@@ -39,6 +39,6 @@ export class ProductsComponent implements OnInit {
     }
 
     clearProductCategoryQuery() {
-        this.queryDB.setProductQuery({ categoryQuery: '' });
+        this.store.dispatch(ProductQueryActions.setProductQuery({ categoryQuery: '' }));
     }
 }

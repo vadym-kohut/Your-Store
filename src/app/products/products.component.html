@@ -4,8 +4,8 @@
     </div>
 
     <div class="col-8">
-        <div class="mb-3" *ngIf="category">
-            <span class="fs-4 fw-bold">{{ category | uppercase }}</span>
+        <div class="mb-3" *ngIf="category$ | async">
+            <span class="fs-4 fw-bold">{{ category$ | async | uppercase }}</span>
             <button
                 (click)="clearProductCategoryQuery()"
                 class="btn btn-sm btn-outline-danger category--header__btn"
@@ -15,7 +15,7 @@
         </div>
 
         <div class="row">
-            <div *ngFor="let product of products | async" class="col-4 mb-3">
+            <div *ngFor="let product of products$ | async" class="col-4 mb-3">
                 <ys-product
                     [product]="product"
                     (addToCartEvent)="addToCart($event);"
