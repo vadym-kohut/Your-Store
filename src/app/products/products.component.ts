@@ -8,7 +8,7 @@ import * as ProductActions from './state/product.actions';
 import * as CartActions from '../cart/state/cart.actions';
 import * as WatchlistActions from '../watchlist/state/watchlist.actions';
 import * as ProductQueryActions from './state/productQuery.actions';
-// import { getProductCategoryQuery } from './state/productQuery.reducer';
+import { getProductCategoryQuery } from './state/productQuery.reducer';
 
 @Component({
     selector: 'ys-products',
@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit {
     ngOnInit(): void {
         this.products$ = this.store.select(getProducts);
         this.store.dispatch(ProductActions.loadProducts());
-        // this.category$ = this.store.select(getProductCategoryQuery);
+        this.category$ = this.store.select(getProductCategoryQuery);
     }
 
     addToWatchlist(product: Product): void {
