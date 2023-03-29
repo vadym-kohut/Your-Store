@@ -1,6 +1,5 @@
 import * as AppState from '../../state/app.state';
-import * as ProductQueryActions from './query.actions';
-import { ProductQuery } from '../../interfaces/product-query';
+import * as ProductQueryActions from './productQuery.actions';
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 
 export interface State extends AppState.State {
@@ -8,18 +7,21 @@ export interface State extends AppState.State {
 }
 
 export interface ProductQueryState {
-    productQuery: ProductQuery;
+    searchQuery: string;
+    categoryQuery: string;
+    sortQuery: string;
+    priceFromQuery: number | null;
+    priceToQuery: number | null;
+    ratingQuery: string;
 }
 
 const initialState: ProductQueryState = {
-    productQuery: {
-        searchQuery: '',
-        categoryQuery: '',
-        sortQuery: 'featured',
-        priceFromQuery: null,
-        priceToQuery: null,
-        ratingQuery: ''
-    }
+    searchQuery: '',
+    categoryQuery: '',
+    sortQuery: 'featured',
+    priceFromQuery: null,
+    priceToQuery: null,
+    ratingQuery: ''
 };
 
 // SELECTORS
@@ -27,12 +29,12 @@ const getProductQueryFeatureState = createFeatureSelector<ProductQueryState>('pr
 
 export const getProductQuery = createSelector(
     getProductQueryFeatureState,
-    state => state.productQuery
+    state => state
 );
 
 export const getProductCategoryQuery = createSelector(
     getProductQueryFeatureState,
-    state => state.productQuery.categoryQuery
+    state => state.categoryQuery
 );
 
 // REDUCER
@@ -41,7 +43,7 @@ export const productQueryReducer = createReducer(
     on(ProductQueryActions.setProductQuery, (state, actions): ProductQueryState => {
         return {
             ...state,
-            productQuery: { ...state.productQuery, ...actions }
+            ...actions
         };
     })
 );

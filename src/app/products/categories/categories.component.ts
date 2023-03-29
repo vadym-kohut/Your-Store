@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { getCategories } from '../state/product.reducer';
 import * as ProductActions from '../state/product.actions';
-import * as ProductQueryActions from '../../products/state/query.actions';
+import * as ProductQueryActions from '../state/productQuery.actions';
 import { State } from '../../state/app.state';
 
 @Component({

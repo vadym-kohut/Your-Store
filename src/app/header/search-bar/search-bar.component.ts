@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { State } from '../../products/state/query.reducer';
-import * as ProductQueryActions from '../../products/state/query.actions';
+import { State } from '../../products/state/productQuery.reducer';
+import * as ProductQueryActions from '../../products/state/productQuery.actions';
 
 @Component({
     selector: 'ys-search-bar',

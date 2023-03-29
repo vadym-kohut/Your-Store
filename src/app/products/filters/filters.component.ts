@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { FilterForm } from 'src/app/interfaces/filter-form';
 import { Store } from '@ngrx/store';
-import { State } from '../state/query.reducer';
-import * as ProductQueryActions from '../../products/state/query.actions';
+import { State } from '../state/productQuery.reducer';
+import * as ProductQueryActions from '../state/productQuery.actions';
 
 @Component({
     selector: 'ys-filters',

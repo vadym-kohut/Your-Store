@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { productReducer } from './state/product.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './state/product.effects';
+import { productQueryReducer } from './state/productQuery.reducer';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { ProductEffects } from './state/product.effects';
         ReactiveFormsModule,
         StarsComponent,
         StoreModule.forFeature('products', productReducer),
+        StoreModule.forFeature('product query', productQueryReducer),
         EffectsModule.forFeature([ProductEffects]),
     ],
 })

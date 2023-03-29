@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { combineLatest, map, mergeMap, Observable } from 'rxjs';
+import { combineLatest, map, mergeMap, Observable, tap } from 'rxjs';
 import * as ProductActions from './product.actions';
 import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { State } from '../../state/app.state';
 import { ProductQuery } from '../../interfaces/product-query';
-import { getProducts } from './product.reducer';
-import { getProductQuery } from './query.reducer';
+import { getProductQuery } from './productQuery.reducer';
 
 @Injectable()
 export class ProductEffects {
@@ -19,14 +18,15 @@ export class ProductEffects {
     ) {
     }
 
-    loadProducts$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(ProductActions.loadProducts),
-            mergeMap(() =>
-                this.getProductsBySearch$(this.store.select(getProducts), this.store.select(getProductQuery)).pipe(
-                    map(products => ProductActions.loadProductsSuccess({ products }))
-            ))
-        )
+    loadProducts$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(ProductActions.loadProducts),
+                mergeMap(() => {
+                    return this.getFilteredProducts$(this.getAllProducts$(), this.store.select(getProductQuery)).pipe(
+                        map(products => ProductActions.loadProductsSuccess({ products }))
+                    )})
+            );
+        }
     );
 
     loadCategoties$ = createEffect(() => {
@@ -49,7 +49,7 @@ export class ProductEffects {
             .pipe(map((data) => data.products));
     }
 
-    getProductsBySearch$(products: Observable<Product[]>, query: Observable<ProductQuery>) {
+    getFilteredProducts$(products: Observable<Product[]>, query: Observable<ProductQuery>) {
         return combineLatest([products, query]).pipe(
             map(([products, query]) => {
                 let filteredProducts: Product[] = products;
