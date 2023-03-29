@@ -1,16 +1,19 @@
 import { Directive, HostBinding, OnInit } from '@angular/core';
 import { map, tap } from 'rxjs';
-import { UserDBService } from '../services/user-db.service';
+import { Store } from '@ngrx/store';
+import { getUserData, State } from '../user/state/user.reducer';
 
 @Directive({
-    selector: '[ysIsUserLogged]',
+    selector: '[ysIsUserLogged]'
 })
 export class IsUserLoggedDirective implements OnInit {
-    constructor(private userDB: UserDBService) { }
+    constructor(
+        private store: Store<State>
+    ) {
+    }
 
     ngOnInit(): void {
-        this.userDB
-            .getUserData$()
+        this.store.select(getUserData)
             .pipe(
                 map((user) => !!user),
                 tap((isLogged) => (this.isDisabled = !isLogged))

@@ -1,14 +1,14 @@
 import { createAction, props } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/product';
 
-export const loadProducts = createAction('[Products] Load');
+export const loadProducts = createAction('[Products] Load Products');
 
 export const loadProductsSuccess = createAction(
-    '[Products] Load Success',
+    '[Products] Load Products Success',
     props<{ products: Product[] }>()
 );
 
-export const loadCategories = createAction('[Products] Categories Load');
+export const loadCategories = createAction('[Products] Load Categories');
 
 export const loadCategoriesSuccess = createAction(
     '[Products] Load Categories Success',

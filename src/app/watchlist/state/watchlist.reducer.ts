@@ -17,46 +17,7 @@ export interface WatchlistState {
 }
 
 const initialState: WatchlistState = {
-    watchlistProducts: [
-        {
-            id: 1,
-            title: 'iPhone 9',
-            description: 'An apple mobile which is nothing like apple',
-            price: 549,
-            discountPercentage: 12.96,
-            rating: 4.69,
-            stock: 94,
-            brand: 'Apple',
-            category: 'smartphones',
-            thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-            images: [
-                'https://i.dummyjson.com/data/products/1/1.jpg',
-                'https://i.dummyjson.com/data/products/1/2.jpg',
-                'https://i.dummyjson.com/data/products/1/3.jpg',
-                'https://i.dummyjson.com/data/products/1/4.jpg',
-                'https://i.dummyjson.com/data/products/1/thumbnail.jpg'
-            ]
-        },
-        {
-            'id': 29,
-            'title': 'Handcraft Chinese style',
-            'description': 'Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate',
-            'price': 60,
-            'discountPercentage': 15.34,
-            'rating': 4.44,
-            'stock': 7,
-            'brand': 'luxury palace',
-            'category': 'home-decoration',
-            'thumbnail': 'https://i.dummyjson.com/data/products/29/thumbnail.webp',
-            'images': [
-                'https://i.dummyjson.com/data/products/29/1.jpg',
-                'https://i.dummyjson.com/data/products/29/2.jpg',
-                'https://i.dummyjson.com/data/products/29/3.webp',
-                'https://i.dummyjson.com/data/products/29/4.webp',
-                'https://i.dummyjson.com/data/products/29/thumbnail.webp'
-            ]
-        }
-    ]
+    watchlistProducts: []
 };
 
 // Selectors

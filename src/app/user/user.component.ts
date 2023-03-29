@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LoginForm } from '../interfaces/login-form';
-import { UserDBService } from '../services/user-db.service';
 import { State } from './state/user.reducer';
 import * as UserActions from './state/user.actions';
 
@@ -21,18 +20,12 @@ export class UserComponent {
     });
 
     constructor(
-        private userDB: UserDBService,
         private router: Router,
         private store: Store<State>
     ) { }
 
     onSubmit() {
-        this.userDB.loginUser(this.loginForm.getRawValue()).subscribe({
-            next: (user) => {
-                this.store.dispatch(UserActions.setUserData({ user }));
-                this.router.navigate(['/']);
-            },
-            error: () => (this.loginDataInvalid = true),
-        });
+        this.store.dispatch(UserActions.fetchUserData(this.loginForm.value));
+        this.router.navigate(['/']);
     }
 }

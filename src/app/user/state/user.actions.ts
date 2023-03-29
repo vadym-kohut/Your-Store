@@ -1,7 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { User } from 'src/app/interfaces/user';
+import { UserData } from 'src/app/interfaces/user-data';
+import { LoginData } from '../../interfaces/login-data';
 
-export const setUserData = createAction(
-    '[User] Set User Data',
-    props<{ user: User }>()
+export const fetchUserData = createAction(
+    '[User] Login User',
+    props<Partial<LoginData>>()
 );
+
+export const fetchUserDataSuccess = createAction(
+    '[User] Login User Success',
+    props<{ userData: UserData }>()
+)

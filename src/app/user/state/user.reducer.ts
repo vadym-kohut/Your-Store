@@ -4,7 +4,7 @@ import {
     createSelector,
     on,
 } from '@ngrx/store';
-import { User } from 'src/app/interfaces/user';
+import { UserData } from 'src/app/interfaces/user-data';
 import * as AppState from '../../state/app.state';
 import * as UserActions from './user.actions';
 
@@ -13,7 +13,7 @@ export interface State extends AppState.State {
 }
 
 export interface UserState {
-    userData: User | undefined;
+    userData: UserData | undefined;
 }
 
 const initialState: UserState = {
@@ -25,16 +25,16 @@ const getUserFeatureState = createFeatureSelector<UserState>('user');
 
 export const getUserData = createSelector(
     getUserFeatureState,
-    (state) => state.userData
+    state => state.userData
 );
 
 // Reducer
 export const userReducer = createReducer(
     initialState,
-    on(UserActions.setUserData, (state, action): UserState => {
+    on(UserActions.fetchUserDataSuccess, (state, action): UserState => {
         return {
             ...state,
-            userData: action.user,
+            userData: action.userData,
         };
     })
 );
