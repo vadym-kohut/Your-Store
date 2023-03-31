@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { combineLatest, map, mergeMap, Observable } from 'rxjs';
+import { combineLatest, map, mergeMap, Observable, tap } from 'rxjs';
 import * as ProductActions from './product.actions';
 import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
@@ -24,13 +24,14 @@ export class ProductEffects {
                 mergeMap(() => {
                     return this.getFilteredProducts$(this.getAllProducts$(), this.store.select(getProductQuery)).pipe(
                         map(products => ProductActions.loadProductsSuccess({ products }))
-                    )})
+                    );
+                })
             );
         }
     );
 
-    loadCategoties$ = createEffect(() => {
-        return this.actions$.pipe(
+    loadCategoties$ = createEffect(() =>
+        this.actions$.pipe(
             ofType(ProductActions.loadCategories),
             mergeMap(() =>
                 this.getCategories$()
@@ -38,8 +39,21 @@ export class ProductEffects {
                         map((categories) =>
                             ProductActions.loadCategoriesSuccess({ categories }))
                     ))
-        );
-    });
+        )
+    );
+
+    getProductDetails$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ProductActions.loadProductDetails),
+            tap(console.log),
+            mergeMap((action) => {
+                console.log(action)
+                return this.getProductById$(action.id).pipe(
+                    map(product =>
+                        ProductActions.loadProductDetailsSuccess({ product }))
+                )})
+        )
+    );
 
     getAllProducts$(): Observable<Product[]> {
         return this.http
@@ -167,5 +181,9 @@ export class ProductEffects {
         return this.http.get<string[]>(
             'https://dummyjson.com/products/categories'
         );
+    }
+
+    getProductById$(id: number): Observable<Product> {
+        return this.http.get<Product>(`https://dummyjson.com/products/${id}`);
     }
 }

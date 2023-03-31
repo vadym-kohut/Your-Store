@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
-import * as CartActions from '../cart/state/cart.actions';
 import { Store } from '@ngrx/store';
-import { State } from '../products/state/product.reducer';
+import { getProductDetails, State } from '../products/state/product.reducer';
 import * as WatchlistActions from '../watchlist/state/watchlist.actions';
-import { HttpClient } from '@angular/common/http';
+import * as CartActions from '../cart/state/cart.actions';
+import * as ProductActions from '../products/state/product.actions';
 
 export interface ProductImageData {
     previewImageSrc: string;
@@ -21,30 +21,19 @@ export interface ProductImageData {
     styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-    chosenProduct!: Product;
-    chosenProductId!: number;
+    productDetails: Observable<Product | null> = this.store.select(getProductDetails);
     chosenProductImages!: ProductImageData[];
 
     constructor(
         private route: ActivatedRoute,
         private store: Store<State>,
-        private  http: HttpClient
     ) { }
 
     ngOnInit(): void {
-        this.route.params
-            .pipe(switchMap((params) => this.getProductById$(params['id'])))
-            .subscribe((product) => {
-                this.chosenProduct = product;
-                this.chosenProductImages = this.chosenProduct.images.map(
-                    (img, i) => ({
-                        previewImageSrc: img,
-                        thumbnailImageSrc: img,
-                        alt: `Image ${i}`,
-                        title: `Image ${i}`,
-                    })
-                );
-            });
+        this.route.params.subscribe(params => {
+            const id = Number(params['id']);
+            this.store.dispatch(ProductActions.loadProductDetails({ id }));
+        });
     }
 
     addToWatchlist(product: Product): void {
@@ -53,10 +42,5 @@ export class ProductDetailsComponent implements OnInit {
 
     addToCart(product: Product): void {
         this.store.dispatch(CartActions.addToCart({ product }));
-    }
-
-    //!! MOVE TO PRODUCT STATE
-    getProductById$(id: number): Observable<Product> {
-        return this.http.get<Product>(`https://dummyjson.com/products/${id}`);
     }
 }

@@ -1,21 +1,33 @@
 import { createAction, props } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/product';
 
-export const loadProducts = createAction('[Products] Load Products');
+// LOAD PRODUCTS
+export const loadProducts = createAction(
+    '[Products] Load Products'
+);
 
 export const loadProductsSuccess = createAction(
     '[Products] Load Products Success',
     props<{ products: Product[] }>()
 );
 
-export const loadCategories = createAction('[Products] Load Categories');
+// LOAD CATEGORIES
+export const loadCategories = createAction(
+    '[Products] Load Categories'
+);
 
 export const loadCategoriesSuccess = createAction(
     '[Products] Load Categories Success',
     props<{ categories: string[] }>()
 );
 
-export const loadProductById = createAction(
-    '[Products] Get Product By Id',
+// LOAD PRODUCT DETAILS
+export const loadProductDetails = createAction(
+    '[Products] Load Product Details',
+    props<{ id: number }>()
+);
+
+export const loadProductDetailsSuccess = createAction(
+    '[Products] Load Product Details Success',
     props<{ product: Product }>()
 );

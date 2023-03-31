@@ -15,11 +15,13 @@ export interface State extends AppState.State {
 export interface ProductState {
     productList: Product[];
     categoryList: string[];
+    productDetails: Product | null;
 }
 
 const initialState: ProductState = {
     productList: [],
-    categoryList: []
+    categoryList: [],
+    productDetails: null
 };
 
 // SELECTORS
@@ -35,6 +37,12 @@ export const getCategories = createSelector(
     (state) => state.categoryList
 );
 
+export const getProductDetails = createSelector(
+  getProductFeatureState,
+    (state) => state.productDetails
+);
+
+// REDUCER
 export const productReducer = createReducer(
     initialState,
     on(ProductActions.loadProductsSuccess, (state, action): ProductState => {
@@ -48,5 +56,11 @@ export const productReducer = createReducer(
             ...state,
             categoryList: action.categories
         };
+    }),
+    on(ProductActions.loadProductDetailsSuccess, (state, action): ProductState => {
+        return {
+            ...state,
+            productDetails: action.product
+        }
     })
 );
