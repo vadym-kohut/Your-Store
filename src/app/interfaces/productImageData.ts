@@ -1,5 +1,5 @@
 export interface ProductImageData {
-    previewImageSrc: string;
+    previewImageSrc: string[];
     thumbnailImageSrc: string;
     alt: string;
     title: string;

@@ -8,26 +8,19 @@ import * as WatchlistActions from '../watchlist/state/watchlist.actions';
 import * as CartActions from '../cart/state/cart.actions';
 import * as ProductActions from '../products/state/product.actions';
 
-export interface ProductImageData {
-    previewImageSrc: string;
-    thumbnailImageSrc: string;
-    alt: string;
-    title: string;
-}
-
 @Component({
     selector: 'ys-product-details',
     templateUrl: './product-details.component.html',
-    styleUrls: ['./product-details.component.css'],
+    styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-    productDetails: Observable<Product | null> = this.store.select(getProductDetails);
-    chosenProductImages!: ProductImageData[];
+    productDetails$: Observable<Product | null> = this.store.select(getProductDetails);
 
     constructor(
         private route: ActivatedRoute,
-        private store: Store<State>,
-    ) { }
+        private store: Store<State>
+    ) {
+    }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {

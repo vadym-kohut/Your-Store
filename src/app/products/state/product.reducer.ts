@@ -7,6 +7,7 @@ import {
 import { Product } from 'src/app/interfaces/product';
 import * as AppState from '../../state/app.state';
 import * as ProductActions from './product.actions';
+import { ProductImageData } from '../../interfaces/productImageData';
 
 export interface State extends AppState.State {
     product: ProductState;
@@ -16,12 +17,14 @@ export interface ProductState {
     productList: Product[];
     categoryList: string[];
     productDetails: Product | null;
+    productImages: ProductImageData | null;
 }
 
 const initialState: ProductState = {
     productList: [],
     categoryList: [],
-    productDetails: null
+    productDetails: null,
+    productImages: null
 };
 
 // SELECTORS
@@ -62,5 +65,5 @@ export const productReducer = createReducer(
             ...state,
             productDetails: action.product
         }
-    })
+    }),
 );

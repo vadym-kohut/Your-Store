@@ -1,9 +1,4 @@
-import {
-    createFeatureSelector,
-    createReducer,
-    createSelector,
-    on
-} from '@ngrx/store';
+import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { Product } from 'src/app/interfaces/product';
 import * as AppState from '../../state/app.state';
 import * as CartActions from './cart.actions';
@@ -32,7 +27,7 @@ export const getCartProducts = createSelector(
 
 export const getDeliveryDate = createSelector(
     getCartFeatureState,
-    (state) => state.deliveryDate
+    state=> state.deliveryDate
 );
 
 export const getCartProductNumber = createSelector(
