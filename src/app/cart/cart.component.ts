@@ -48,23 +48,4 @@ export class CartComponent implements OnInit {
             padTo2Digits(date.getDate())
         ].join('/');
     }
-
-
-    array = [{
-        qwe: 'qwe',
-        asd: 0
-    }, {
-        zxc: 'zxc',
-        asd: 0
-    }];
-
-    array1 = [{
-        aaa: 'qwe',
-        bbb: 0
-    }, {
-        aaa: 'zxc',
-        bbb: 0
-    }];
-
-
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { combineLatest, map, mergeMap, Observable, tap } from 'rxjs';
+import { combineLatest, map, mergeMap, Observable } from 'rxjs';
 import * as ProductActions from './product.actions';
 import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
@@ -42,12 +42,10 @@ export class ProductEffects {
         )
     );
 
-    getProductDetails$ = createEffect(() =>
+    loadProductDetails$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ProductActions.loadProductDetails),
-            tap(console.log),
             mergeMap((action) => {
-                console.log(action)
                 return this.getProductById$(action.id).pipe(
                     map(product =>
                         ProductActions.loadProductDetailsSuccess({ product }))
