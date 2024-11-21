@@ -5,6 +5,7 @@ import { getCategories } from '../state/product.reducer';
 import * as ProductActions from '../state/product.actions';
 import * as ProductQueryActions from '../state/productQuery.actions';
 import { State } from '../../state/app.state';
+import { ProductCategory } from '../../interfaces/product';
 
 @Component({
     selector: 'ys-categories',
@@ -12,7 +13,7 @@ import { State } from '../../state/app.state';
     styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-    categories = new Observable<string[]>();
+    categories = new Observable<ProductCategory[]>();
 
     constructor(
         private store: Store<State>

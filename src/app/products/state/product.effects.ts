@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { combineLatest, map, mergeMap, Observable } from 'rxjs';
 import * as ProductActions from './product.actions';
-import { Product } from '../../interfaces/product';
+import { Product, ProductCategory } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { State } from '../../state/app.state';
@@ -176,8 +176,8 @@ export class ProductEffects {
         );
     }
 
-    getCategories$(): Observable<string[]> {
-        return this.http.get<string[]>(
+    getCategories$(): Observable<ProductCategory[]> {
+        return this.http.get<ProductCategory[]>(
             'https://dummyjson.com/products/categories'
         );
     }

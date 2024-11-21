@@ -1,9 +1,9 @@
 <ul class="list-group">
     <li
-        (click)="setProductCategoryQuery(category)"
+        (click)="setProductCategoryQuery(category.slug)"
         *ngFor="let category of categories | async"
         class="list-group-item"
     >
-        {{ category }}
+        {{ category.name }}
     </li>
 </ul>

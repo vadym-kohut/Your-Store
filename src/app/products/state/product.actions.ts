@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Product } from 'src/app/interfaces/product';
+import { Product, ProductCategory } from 'src/app/interfaces/product';
 
 // LOAD PRODUCTS
 export const loadProducts = createAction(
@@ -18,7 +18,7 @@ export const loadCategories = createAction(
 
 export const loadCategoriesSuccess = createAction(
     '[Products] Load Categories Success',
-    props<{ categories: string[] }>()
+    props<{ categories: ProductCategory[] }>()
 );
 
 // LOAD PRODUCT DETAILS

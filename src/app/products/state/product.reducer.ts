@@ -4,7 +4,7 @@ import {
     createSelector,
     on
 } from '@ngrx/store';
-import { Product } from 'src/app/interfaces/product';
+import { Product, ProductCategory } from 'src/app/interfaces/product';
 import * as AppState from '../../state/app.state';
 import * as ProductActions from './product.actions';
 import { ProductImageData } from '../../interfaces/productImageData';
@@ -15,7 +15,7 @@ export interface State extends AppState.State {
 
 export interface ProductState {
     productList: Product[];
-    categoryList: string[];
+    categoryList: ProductCategory[];
     productDetails: Product | null;
     productImages: ProductImageData | null;
 }
@@ -41,7 +41,7 @@ export const getCategories = createSelector(
 );
 
 export const getProductDetails = createSelector(
-  getProductFeatureState,
+    getProductFeatureState,
     (state) => state.productDetails
 );
 
@@ -64,6 +64,6 @@ export const productReducer = createReducer(
         return {
             ...state,
             productDetails: action.product
-        }
-    }),
+        };
+    })
 );
